@@ -1,0 +1,385 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{framed}
+\usepackage{enumitem}
+\usepackage{tabto}
+\usepackage{xcolor}
+
+
+\geometry{
+	a4paper,
+	total={210mm,297mm},
+	left=20mm,
+	right=20mm,
+	top=15mm,
+	bottom=15mm,
+}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposição}
+\newtheorem{conjecture}[theorem]{Conjectura}
+\newtheorem{corollary}[theorem]{Corolário}
+\newtheorem{definition}[theorem]{Definição}
+
+\setlist[description]{leftmargin=\parindent,labelindent=\parindent,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[itemize]{leftmargin=\parindent,labelindent=\parindent,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+
+\author{Gino Chen Hsiang-Jan}
+\title{Resumo Álgebra Linear}
+\date{26 de Outubro de 2015}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newcommand{\bref}[1]{\textsuperscript{\tiny\textnormal{\textbf{\setlength{\fboxsep}{1pt}\colorbox{gray!50}{\color{white}{#1}}}}}}
+
+\section{Corpos}
+\begin{definition}\bref{[Coelho,AlgLin,2013]}
+	Um conjunto não vazio $\mathsf{K}$ é um corpo se em $\mathsf{K}$ pudermos definir duas operações, denotadas por +(adição) e . (multiplicação). satisfazendo as seguintes propriedades:
+	\begin{description}
+		\item[propriedade comutativa] (A1) $a + b = b + a, \forall a, b \in \mathsf{K}$ 
+		\item[propriedade associativa] (A2) $a + (b + c) = (a + b) + c, \forall a, b, c \in \mathsf{K}$ 
+		\item[elemento neutro da soma] (A3) Existe um elemento em $\mathsf{K}$, denotado por $0$ e chamado de elemento neutro da adição, que satisfaz $0 + a = a + 0 = a, \forall a \in \mathsf{K}$
+		\item[inserso aditivo] (A4) Para cada $a \in \mathsf{K}$, existe um número em $\textsf{K}$ , denotado por $-a$ e chamado de oposto de $a$ (ou inverso aditivo de $a$) tal que $a + (-a) = 0$
+		\item[propriedade comutativa] (M1) $a.b = b.a, \forall a, b \in \mathsf{K}$ (propriedade comutativa)
+		\item[propriedade associativa] (M2) $a.(b.c) = (a.b).c, \forall a, b, c \in \mathsf{K}$ (propriedade associativa)
+		\item[elemento neutro da multiplicação] (M3) Existe um elemento em $\mathsf{K}$, denotado por $1$ e chamado de elemento neutro da multiplicação, tal que $1.a = a.1 = a, \forall a \in \mathsf{K}$
+		\item[inverso multiplicativo] (M4) Para cada elemento não nulo $a \in \mathsf{K}$, existe um elemento em $\mathsf{K}$, denotado por $a^{-1}$ e chamando de inverso multiplicativo  de $a$, tal que $a.a^{-1} = a^{-1}.a = 1$.
+	\end{description}
+\end{definition}
+
+\section{Espaços e Subespaços Vetoriais}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Chama-se espaço vetorial $\textsf{E}$ a um conjunto de elementos chamados vetores, no qual estão
+	definidas duas operações: adição, $\forall u, v \in \textsf{E} \Rightarrow u+v \in \textsf{E}$,  e multiplicação $\forall \alpha \in \mathbb{R},  \forall v \in \textsf{E} \Rightarrow \alpha v \in \textsf{E}$. Sejam, $\alpha, \beta \in \mathbb{R}, u, v \in \textsf{E}$. As operações de adição e multiplicação também devem satisfazer os seguintes axiomas:
+	\begin{description}
+		\item[comutatividade     ] $u+v = v+u$
+		\item[associatividade    ] $(u+v)+w = v+(u+w)$ e $(\alpha \beta)v = \alpha (\beta v)$
+		\item[vetor nulo         ] existe um vetor $0 \in \textsf{E}$, tal que $v + 0 = 0 + v$ para todo $v \in \textsf{E}$
+		\item[inverso aditivo    ] para cada vetor $v \in \textsf{E}$ existe $-v \in \textsf{E}$ tal que $v + (-v) = 0$
+		\item[distributividade   ] $(\alpha + \beta)v = \alpha v + \beta v$ e $\alpha(u + v) = \alpha u + \alpha v$
+		\item[multiplicação por 1] $1 v = v$
+	\end{description}
+\end{definition}
+
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Seja $\textsf{E}$ um espaço vetorial, Um subespaço vetorial de $\textsf{E}$ é um subconjunto $\textsf{F} \subset \textsf{E}$ com as seguintes propriedades:
+	\begin{description}
+		\item[vetor nulo         ] existe um vetor $0 \in \textsf{F}$
+		\item[fechamento da soma] $\forall u, v \in \textsf{F} \Rightarrow u+v \in \textsf{F}$
+		\item[fechamento produto com escalar] $\forall v \in \textsf{E} \Rightarrow \forall \alpha \in \mathbb{R}, \alpha v \in \textsf{F}$
+	\end{description}
+\end{definition}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Seja $\textsf{F}_1, \textsf{F}_2 \subset \textsf{E}$, $F_1 + F_2 := \{ v_1 + v_2 : v_1 \in F_1 \land v_2 \in F_2 \}$.
+\end{definition}
+\par
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Seja $\textsf{F}_1, \textsf{F}_2 \subset \textsf{E}$ $\land$ $\textsf{F}_1 \cap \textsf{F}_2 = \{0_v\}$, chama-se de soma direta entre $\textsf{F}_1$ e $\textsf{F}_2$, denotado como $\textsf{F}_1 \oplus \textsf{F}_2$, $\textsf{F}_1 \oplus \textsf{F}_2 := \textsf{F}_1 \cup \textsf{F}_2$.
+\end{definition}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Sejam $\textsf{F}, \textsf{F}_1, \textsf{F}_2$ subespaços vetoriais de $\textsf{E}$ com $\textsf{F}_1 \subset \textsf{F}$ e $\textsf{F}_2 \subset \textsf{F}$. São equivalentes:
+	\begin{itemize}
+		\item $\textsf{F} = \textsf{F}_1 \oplus \textsf{F}_2$
+		\item $\forall w \in \textsf{F} $ se escreve, de modo único, como a soma $w = v_1 + v_2$, onde $v_1 \in \textsf{F}_1$, e $v_2 \in \textsf{F}_2$
+	\end{itemize}
+\end{theorem}	
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Seja $\textsf{E}$ um espaço vetorial. Se $x, y \in \textsf{E}$ e $x \neq y$, a reta que une os pontos $x, y$ é, por definição o conjunto: $r = \{(1 - t)x + ty; t \in \mathbb{R}\}$.
+\end{definition}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Um subconjunto $\textsf{V} \in \textsf{E}$ chama-se uma variedade afim quando a reta que une dois pontos quaisquer de $\textsf{V}$ está contida em $\textsf{V}$. Assim $\textsf{V} \in \textsf{E}$ é uma variedade afim se, e somente se, cumpre a seguinte condição:
+	\[
+		x, y \in \textsf{V}, t \in \mathbb{R} \Rightarrow (1 - t)x + ty \in \textsf{V}.
+	\]
+\end{definition}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Se $\textsf{V}_1, \textsf{V}_2, \textsf{V}_3, \dots, \textsf{V}_n  \subset \textsf{E}$ são variedades afins, estão a interseção $V = \textsf{V}_1 \cap \textsf{V}_2 \cap \textsf{V}_3 \cap \dots, \cap \textsf{V}_n$ também é uma variedade afim.
+\end{theorem}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Todo ponto $p \in \textsf{E}$ é uma variedade afim.
+\end{theorem}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Seja $\textsf{V}$ uma variedade afim não-vazia no espaço vetorial $\textsf{V}$. Existe um único subespaço vetorial $\textsf{F} \subset \textsf{E}$ tal que, $\forall x \in \textsf{V}$ tem-se $\textsf{V} = x + \textsf{F} = \{x + v: v\in \textsf{F} \}$.
+\end{theorem}
+
+
+\section{Bases}
+Considere $V$ um espaço vertorial sobre $\mathsf{K}$.
+
+\begin{definition}\bref{[Coelho,AlgLin,2013]}
+	Um vetor $v \in \mathsf{V}$ é uma combinação linear dos vetores $v_1, \dots, v_n \in \mathsf{V}$ se existirem escalares $\alpha_1, \dots \alpha_n \in \mathsf{K}$ tais que:
+	\[
+		v = \alpha_1 v_1 + \dots + \alpha_n v_n = \sum_{i = 0}^{n} \alpha_i v_i
+	\]
+\end{definition}
+
+\begin{definition}\bref{[Coelho,AlgLin,2013]}
+		Seja $\mathcal{B}$ um subconjunto de $\mathsf{V}$. Dizemos que $\mathcal{B}$ é um conjunto gerador de $\mathsf{V}$ se todos os elementos de $\mathsf{V}$ for uma combinação linear de um número finito de elementos de $\mathcal{B}$.
+\end{definition}
+
+\begin{definition}\bref{[Coelho,AlgLin,2013]}
+	O conjunto vazio gera o espaço vetorial ${0}$.
+\end{definition}
+
+\begin{definition}\bref{[Coelho,AlgLin,2013]}
+	Seja $\mathcal{B}$ um subconjunto de $\mathsf{V}$. Dizemos que $\mathcal{B}$ é linearmente independente (ou l.i.) se $\alpha_1 v_1 + \dots + \alpha_n v_n = 0$, para $v_i \in \mathcal{B}$ e $\alpha_i \in \mathsf{K}$, $i = 0, \dots, n$ implica $\alpha_1 = \dots = \alpha_n = 0$.
+\end{definition}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Seja $\textsf{E}$ um espaço vetorial. Diz-se que um conjunto $X \subset \textsf{E}$ é linearmente independente (LI) quando nenhum vetor $v \in X$ é combinação linear de outros elementos de $X$ ou se $X$ tem somente um elemento não nulo.\\
+	
+	\bref{[Coelho,AlgLin,2013]} Dizemos que um subconjunto $\mathcal{B}$ de $\mathsf{V}$ é uma base de $\mathsf{V}$ se:\\
+	(i) $\mathcal{B}$ for um subconjunto gerador de $\mathsf{V}$\\
+	(ii) $\mathcal{B}$ for linearmente independente.
+\end{definition}
+
+\begin{definition}\bref{[Coelho,AlgLin,2013]}
+	O conjunto vazio é uma base do espaço vetorial ${0}$.
+\end{definition}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Seja $X$ um conjunto LI de um espaço vetorial $\textsf{E}$. $\alpha_1 v_1 + \alpha_2 v_2 + \alpha_3 v_3 + \dots + \alpha_m v_m$ com $v_1, v_2, v_3, \dots, v_m \in X \Leftrightarrow \alpha_1 = \alpha_2 = \alpha_3 = \dots = \alpha_m = 0$
+\end{theorem}
+
+\begin{corollary}\bref{[Lima,AlgLin,2014]}
+	Se $v = \alpha_1 v_1 + \alpha_2 v_2 + \alpha_3 v_3 + \dots + \alpha_m v_m = \beta_1 v_1 + \beta_2 v_2 + \beta_3 v_3 + \dots + \beta_m v_m$ e os vetores $v_1, v_2, v_3, \dots, v_m $ são LI então $\alpha_1 = \beta_1, \alpha_2 = \beta_2, \alpha_3 = \beta_3, \dots, \alpha_m = \beta_m$.
+\end{corollary}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Sejam $v_1, v_2, v_3, \dots, v_m $ vetores não nulos do espaço vetorial $\textsf{E}$. Se nenhum deles é combinação linear dos anteriores então $X = \{v_1, v_2, v_3, \dots, v_m \}$ é LI.
+\end{theorem}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Um conjunto $X \in \textsf{E}$ é linearmente dependente (LD) quando não é LI. Ou seja, $X = \{0_v\}$ ou $\exists v \in X$ tal que $v$ é combinação linear de outros elementos em $X$.
+\end{definition}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Uma base de um espaço vetorial $\textsf{E}$ é um conjunto $\mathcal{B} \subset \textsf{E}$ linearmente independente que gera $\textsf{E}$. Ou seja, $\forall v \in \textsf{E}$ se exprime, de modo único como combinação linear $v = \alpha_1 v_1 + \alpha_2 v_2 + \alpha_3 v_3 + \dots + \alpha_m v_m$, $v_1, v_2, v_3,\dots, v_m \in \mathcal{B}$. $\alpha_1, \alpha_2, \alpha_3, \dots, \alpha_m$ são coordenadas do vetor $v$ na base $\mathcal{B}$.
+\end{definition}
+
+\begin{definition}\bref{[Coelho,AlgLin,2013]}
+	Dizemos que $\mathsf{V}$ é finitamente gerado se possuir um gerador finito.
+\end{definition}
+
+\begin{proposition}\bref{[Coelho,AlgLin,2013]}
+	Seja $\mathsf{V}$ um $\mathsf{K}$ espaço vetorial finitamente gerado não nulo e assuma $\{v_1, \dots, v_m\}$ seja um conjunto gerador de $\mathsf{V}$. Então todo conjunto linearmente independente de vetores em $\mathsf{V}$ tem no máximo $m$ elementos.
+\end{proposition}
+
+\begin{corollary}\bref{[Coelho,AlgLin,2013]}
+	Seja $\mathsf{V}$ um $\mathsf{K}$ espaço vetorial finitamente gerado não nulo. Então duas bases qualquer de $\mathsf{V}$ têm o mesmo número de elementos.
+\end{corollary}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Um sistema linear é chamado homogêneo quando o segundo membro de cada equação é igual a zero.
+\end{definition}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Todo sistema linear homogêneo cujo número de incógnitas é maior do que o número de equações admite uma solução não trivial.
+\end{theorem}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Se os vetores $v_1, v_2, v_3, \dots, v_m$ geram o espaço vetorial $\textsf{E}$ então qualquer conjunto com mais de $m$ vetores em $\textsf{E}$ é LD
+\end{theorem}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Se os vetores $v_1, v_2, v_3, \dots, v_m$ geram o espaço vetorial $\textsf{E}$ e os vetores $u_1, u_2, u_3, \dots, u_n$ são LI, então $n \leq m$.
+\end{theorem}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Se o espaço vetorial $\textsf{E}$ admite uma base $\mathcal{B} = \{ u_1, u_2, u_3, \dots, u_n \}$ com $n$ elementos, qualquer outra base de $\textsf{E}$ possui também $n$ elementos.
+\end{theorem}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Diz-se que o espaço vetorial $\textsf{E}$ tem dimensão finita quando admite uma base $\mathcal{B} = \{ v_1, v_2, v_3, \dots, v_n \}$ com um número finito $n$ de elementos. Este número, que é igual para todas as bases de $\textsf{E}$, chama-se a dimensão do espaço vetorial $\textsf{E}$. Denotado por $dim \textsf{E} := n$. Diz-se que o espaço vetorial $\textsf{E} = \{ 0_v \}$ tem dimensão zero
+\end{definition}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Se a dimensão de $\textsf{E}$ é $n$, um conjunto com $n$ vetores, gera $\textsf{E}$ se, e somente se, é LI.
+\end{theorem}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Seja $\textsf{E}$ um espaço vetorial de dimensão finita $n$, então:
+	\begin{itemize}
+		\item Todo conjunto $X$ de geradores de $\textsf{E}$ contém uma base.
+		\item Todo conjunto LI $\{ v_1, v_2, v_3, \dots, v_n \} \subset \textsf{E}$ está contido numa base.
+		\item Todo subespaço vetorial $\textsf{F} \subset \textsf{E}$ tem dimensão finita a qual $\leq n$.
+		\item Se a dimensão do subespaço $\textsf{F} \subset \textsf{E}$ é igual a $n$, então $\textsf{F} = \textsf{E}$
+	\end{itemize}
+\end{theorem}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Diz-se que o espaço vetorial $\textsf{E}$ tem dimensão infinita quando não tem dimensão finita. Ou seja, quando nenhum subconjunto finito de $\textsf{E}$ é uma base.
+\end{definition}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Diz-se que a variedade afim de $V \subset \textsf{E}$ tem dimensão $r$ quando $V = x + \textsf{F}$, onde o subespaço vetorial $\textsf{F} \subset \textsf{E}$.
+\end{definition}
+
+
+\section{Transformações Lineares}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Sejam $\textsf{E}, \textsf{F}$ espaços vetoriais. Uma transformação linear $A:\textsf{E} \rightarrow \textsf{F}$ é uma correspondência que associa a cada vetor $v \in \textsf{E}$ um vetor $A(v) = Av \in \textsf{F}$ de modo que valham, para quaisquer $u, v \in \textsf{E}$ e $\alpha \in \mathbb{R}$, as relações:
+	\begin{itemize}
+		\item $A(u + v) = Au + Av$
+		\item $A(\alpha v) = \alpha  Av$
+	\end{itemize}
+\end{definition}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Seja $\mathcal{L}(\textsf{E}; \textsf{F})$, espaço vetorial dos conjunto das transformações lineares de $\textsf{E}$ para $\textsf{F}$. $\mathcal{L}(\textsf{E}) := \mathcal{L}(\textsf{E}; \textsf{E})$, $A: \textsf{E} \rightarrow \textsf{E}$ chamado de operador linear em $\textsf{E}$. E $\textsf{E}^* :=\mathcal{L}(\textsf{E}; \mathbb{R})$, $\varphi:\textsf{E} \rightarrow \mathbb{R}$, chamados funcionais lineares. O conjunto dos funcionais lineares $\textsf{E}^*$ de dual de $\textsf{E}$
+\end{definition}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Sejam $\textsf{E}$, $\textsf{F}$ espaços vetoriais e $\mathcal{B}$ uma base de $\textsf{E}$. A cada vetor $u \in \mathcal{B}$, façamos corresponder (de maneira arbitrária) um vetor $u' \in \textsf{F}$. Então existe uma única transformação linear $A:\textsf{E} \rightarrow \textsf{F}$ tal que $Au = u', \forall u \in \mathcal{B}$.
+\end{theorem}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Dadas as transformações lineares $A:\textsf{E} \rightarrow \textsf{F}$, $B:\textsf{F} \rightarrow \textsf{G}$, $D(B) = CD(A)$. Define-se o produto $BA:\textsf{A} \rightarrow \textsf{G}, \forall v \in \textsf{E}, (\textsf{BA})v = \textsf{B}(\textsf{A}v)$
+\end{definition}
+
+
+Dadas as transformações lineares $A:\textsf{E} \rightarrow \textsf{F}$, $B:\textsf{F} \rightarrow \textsf{G}$, $C:\textsf{G} \rightarrow \textsf{H}$. Temos as seguintes propriedades:
+\begin{description}
+	\item[Associatividade] $(\textsf{C}\textsf{B})\textsf{A} = \textsf{C}(\textsf{B}\textsf{A})$
+	\item[Distributiva à esquerda] $(\textsf{B} + \textsf{C})\textsf{A} = \textsf{B}\textsf{A} + \textsf{C}\textsf{A}$
+	\item[Distributiva à direita] $\textsf{C}(\textsf{A} + \textsf{B}) = \textsf{C}\textsf{A} + \textsf{C}\textsf{B}$
+	\item[Homogeneidade] $\textsf{B}(\alpha\textsf{A}) = \alpha(\textsf{B}\textsf{A})$
+\end{description}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Um operador $A$ chama-se nilpotente quando, para algum $n \in \mathbb{N}$, tem-se $A^n = 0$. Um exemplo significativo de um operador nilpotente é a derivação $D: \textsf{P}_n \rightarrow \textsf{P}_n$. Para todo polinômio $p$ de grau $\leq n$ tem-se $D^{n + 1}p = 0$, logo $D^{n + 1} = 0$.
+\end{definition}
+
+
+\section{Núcleo e Imagem}
+
+Considerando a transformação linear $A: \textsf{E} \rightarrow \textsf{F}$ sendo, $E, F$ dois espaços vetoriais.
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	A imagem de $A$ é o subconjunto $\mathcal{I}m(A)  := \{ w \in \textsf{F} : w = Av, \forall v \in \textsf{E}\}$.
+\end{definition}
+
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Se $\mathcal{I}m(A) = \textsf{F}$, diz que $A$ é sobrejetiva.
+\end{definition}
+
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Uma transformação linear $B: \textsf{F} \rightarrow \textsf{E}$ chama-se inversa à direita da transformação $A$, quando tem $AB = I_F$, ou seja, $A(Bw) = w, \forall w \in \textsf{F}$.
+\end{definition}
+
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Uma transformação linear $A: \textsf{E} \rightarrow \textsf{F}$ entre espaços vetoriais de dimensões finitas possui uma inversa à direita se, e somente se $A$ é sobrejetiva.
+\end{theorem}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	O núcleo de $A$ é o subconjunto $\mathcal{N}(A)  := \{ v \in \textsf{E} : Av = 0\}$.
+\end{definition}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Uma transformação linear $A: \textsf{E} \rightarrow \textsf{F}$ chama-se injetiva $\Leftrightarrow \forall v,v' \in \textsf{E}, v \neq v' \Rightarrow Av \neq Av', Av, Av' \in \textsf{F}$.
+\end{definition}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Uma transformação linear $A: \textsf{E} \rightarrow \textsf{F}$ é injetiva $\Leftrightarrow \mathcal{N}(A) = \{ 0_v \}$.
+\end{theorem}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Uma transformação linear $A: \textsf{E} \rightarrow \textsf{F}$ é injetiva $\Leftrightarrow$ leva vetores LI para vetores LI.
+\end{theorem}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Seja $A: \textsf{E} \rightarrow \textsf{F}$ uma transformação linear. $V = \{x \in \textsf{E} : Ax = b, \forall b \in \mathcal{I}m(A)\}$ é uma variedade afim paralela a $\mathcal{N}(A)$.
+\end{theorem}
+
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Uma transformação linear $B: \textsf{F} \rightarrow \textsf{E}$ chama-se inversa à esquerda da transformação $A$, quando tem $BA = I_E$, ou seja, $B(Aw) = w, \forall w \in \textsf{F}$.
+\end{definition}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Uma transformação linear $A: \textsf{E} \rightarrow \textsf{F}$ entre espaços vetoriais de dimensões finitas possui uma inversa à esquerda se, e somente se $A$ é injetiva.
+\end{theorem}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Uma transformação linear $A: \textsf{E} \rightarrow \textsf{F}$ chama-se inversível quando existe $B: \textsf{F} \rightarrow \textsf{E}$ linear tal que $BA = I_E$ e $AB = I_F$, quando $B$ é ao mesmo tempo inversa pela esquerda e à direta de $A$. $B$ é inversa de $A$ e denota-se $B = A^{-1}$.
+\end{definition}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Se uma transformação linear $A$ é inversível é equivalente dizer:
+	\begin{itemize}
+		\item $A$ é injetiva e sobrejetiva ou seja, $A$ é uma bijeção linear entre $\textsf{E}$ e $\textsf{F}$.
+		\item $A: \textsf{E} \rightarrow \textsf{F}$ é um isomorfismo e os espaços vetoriais $\textsf{E}$ e $\textsf{F}$ são isomorfos.
+		\item $A$ tem uma inversa à esquerda $B:\textsf{F} \rightarrow \textsf{E}$ e uma inversa à direita $C:\textsf{F} \rightarrow \textsf{E}$ então $B = C$ e $A$ é um isomorfismo, com $A^{-1} = B = C$.
+	\end{itemize}
+\end{theorem}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Uma transformação linear $A: \textsf{E} \rightarrow \textsf{F}$ e $B: \textsf{F} \rightarrow \textsf{G}$ temos:
+	\begin{itemize}
+	\item $(AB)^{-1} = B^{-1}A^{-1}$
+	\item $(\alpha A)^{-1} = \frac{1}{\alpha}A^{-1}$, $\alpha \neq 0$
+	\end{itemize}
+\end{theorem}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}[Teorema do Núcleo e da Imagem]
+	Sejam $\textsf{E}$, $\textsf{F}$ espaços vetoriais de dimensão finita. Para toda transformação linear $A:\textsf{E} \rightarrow \textsf{F}$ tem-se $dim\ \textsf{E} = dim\ \mathcal{N}(A) + dim\ \mathcal{I}m(A)$
+\end{theorem}
+
+\begin{corollary}\bref{[Lima,AlgLin,2014]}
+	Sejam $\textsf{E}$, $\textsf{F}$ espaços vetoriais de \textbf{mesma dimensão finita}. Uma transformação linear $A:\textsf{E} \rightarrow \textsf{F}$ é injetiva se, e somente se, é sobrejetiva, portantdo é um isomorfismo.
+\end{corollary}
+
+\section{Produto Interno}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Um produto interno num espaço vetorial $\textsf{E}$ é um funcional bilinear simétrico e positivo em $\textsf{E}$. É uma função $\textsf{E}\times\textsf{E} \rightarrow \mathbb{R}$, que associa cada par de vetores $u, v \in \textsf{E}$ a um número real $\langle u, v\rangle$ de modo que sejam válidas as seguintes propriedades:
+	\begin{description}
+		\item [Bilinearidade] 
+				\tabto{2cm} $\langle u + u', v\rangle = \langle u, v\rangle + \langle u', v\rangle$ \\
+				\tabto{2cm} $\langle \alpha u, v\rangle = \alpha\langle u, v\rangle$ \\
+				\tabto{2cm} $\langle u, v + v'\rangle = \langle u, v\rangle + \langle u, v'\rangle$ \\
+				\tabto{2cm} $\langle u, \alpha v\rangle = \alpha\langle u, v\rangle$ \\
+		\item [Comutatividade (simetria)]
+				\tabto{2cm} $\langle u, v\rangle = \langle v, u\rangle$ 
+		\item [Positividade]
+				\tabto{2cm} $\langle u, u\rangle > 0, u \neq 0$ 
+	\end{description}
+\end{definition}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Seja $\textsf{E}$ um espaço vetorial com produto interno, $u, v \in \textsf{E}$. $u$ e $v$ são ortogonais $\Leftrightarrow$ $\langle u, v \rangle = 0$. Denotado como $u \perp v$.
+\end{definition}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Seja $\textsf{E}$ um espaço vetorial com produto interno, Um conjunto $X \subset \textsf{E}$. $\forall u, v \in X$ tal que $u \neq v \land u \perp v $ diz que $X$ é ortogonal. Se todos os vetores em $X$ são unitários $X$ é um conjunto ortonormal.
+\end{definition}
+
+\begin{theorem}\bref{[Lima,AlgLin,2014]}
+	Num espaço vetorial $\textsf{E}$ com produto interno, todo conjunto ortogonal $X$ de vetores não nulos é LI.
+\end{theorem}
+
+\end{document}
