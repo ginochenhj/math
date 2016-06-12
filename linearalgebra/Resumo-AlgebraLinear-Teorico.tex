@@ -24,12 +24,7 @@
 	bottom=15mm,
 }
 
-\newtheorem{theorem}{Teorema}[section]
-\newtheorem{lemma}[theorem]{Lema}
-\newtheorem{proposition}[theorem]{Proposição}
-\newtheorem{conjecture}[theorem]{Conjectura}
-\newtheorem{corollary}[theorem]{Corolário}
-\newtheorem{definition}[theorem]{Definição}
+\input{../include/mathstatement.tex}
 
 \setlist[description]{leftmargin=\parindent,labelindent=\parindent,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
 \setlist[itemize]{leftmargin=\parindent,labelindent=\parindent,topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
@@ -39,10 +34,10 @@
 \date{26 de Outubro de 2015}
 
 \begin{document}
-\maketitle
-\tableofcontents
-\newcommand{\bref}[1]{\textsuperscript{\tiny\textnormal{\textbf{\setlength{\fboxsep}{1pt}\colorbox{gray!50}{\color{white}{#1}}}}}}
 
+%******************************************************************************
+% Corpos
+%******************************************************************************
 \section{Corpos}
 \begin{definition}\bref{[Coelho,AlgLin,2013]}
 	Um conjunto não vazio $\mathsf{K}$ é um corpo se em $\mathsf{K}$ pudermos definir duas operações, denotadas por +(adição) e . (multiplicação). satisfazendo as seguintes propriedades:
@@ -58,6 +53,50 @@
 	\end{description}
 \end{definition}
 
+%******************************************************************************
+% Matrizes
+%******************************************************************************
+\section{Matrizes}
+
+\begin{definition}\bref{[Ben,AlgLinApl-pt,1986]}
+Uma matriz anti-simétrica é definida como sendo uma matriz tal que $A^t = -A$, ou seja, $a_{ij} = -a_{ji}$
+\end{definition}
+
+\begin{lemma}\bref{[Ben,AlgLinApl-pt,1986]}
+Uma matriz anti-simétrica é quadrada, e que os elementos da diagonal de uma matriz anti-simétrica são nulos.
+\end{lemma}
+
+\begin{lemma}\bref{[Ben,AlgLinApl-pt,1986]}
+Se $A$ é qualquer matriz quadrada, então $A-A^t$ é anti-simétrica.
+\end{lemma}
+
+\begin{definition}\bref{[Ben,AlgLinApl-pt,1986]}
+Uma matriz real é uma cujos elementos são todos reais. Uma matriz complexa tem elementos que podem ser complexos. Uma matriz imaginária tem elementos que são todos imaginários ou nulos. O símbolo $\overline{A}$ é usado para represenar a matriz cujo $(i, j)$-ésimo elementos é conjugado complexo $\overline{a}_{ij}$ do $(i, j)$-ésimo elemento de $A$. 
+\end{definition}
+
+\begin{definition}\bref{[Ben,AlgLinApl-pt,1986]}
+Chama-se de matriz transposta hermitiana, denotado por $A^H$, $A^H = \overline{A}^t$, que é a complexa cojugada da transposta ordinária.
+\end{definition}
+
+\begin{definition}\bref{[Ben,AlgLinApl-pt,1986]}
+Chama-se de matriz hermitiana é uma matriz tal que $A^H = A$.
+\end{definition}
+
+\begin{lemma}\bref{[Ben,AlgLinApl-pt,1986]}
+Uma matriz hermitiana é a soma de uma matriz real simétrica e de uma matriz imaginária anti-simétrica.
+\end{lemma}
+
+\begin{lemma}\bref{[Ben,AlgLinApl-pt,1986]}
+As propriedades de matrizes são válidas:
+	\begin{itemize}
+		\item $\overline{AB} = \overline{A}.\overline{B}$
+		\item $(\overline{A})^t = (\overline{A^t})$
+	\end{itemize}
+\end{lemma}
+
+%******************************************************************************
+% Espaços e Subespaços Vetoriais
+%******************************************************************************
 \section{Espaços e Subespaços Vetoriais}
 
 \begin{definition}\bref{[Lima,AlgLin,2014]}
