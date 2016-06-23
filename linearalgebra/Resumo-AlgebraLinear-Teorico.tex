@@ -76,43 +76,7 @@ Se $A$ é qualquer matriz quadrada, então $A-A^t$ é anti-simétrica.
 Uma matriz real é uma cujos elementos são todos reais. Uma matriz complexa tem elementos que podem ser complexos. Uma matriz imaginária tem elementos que são todos imaginários ou nulos. O símbolo $\overline{A}$ é usado para represenar a matriz cujo $(i, j)$-ésimo elementos é conjugado complexo $\overline{a}_{ij}$ do $(i, j)$-ésimo elemento de $A$. 
 \end{definition}
 
-\begin{definition}\bref{[Noble,AlgLinApl-pt,1986]}
-Chama-se de matriz transposta hermitiana, denotado por $A^H$, $A^H = \overline{A}^t$, que é a complexa cojugada da transposta ordinária.
-\end{definition}
-
-\begin{definition}\bref{[Noble,AlgLinApl-pt,1986]}
-Chama-se de matriz hermitiana uma matriz tal que $A^H = A$.
-\end{definition}
-
-\begin{lemma}\bref{[Noble,AlgLinApl-pt,1986]}
-Uma matriz hermitiana é a soma de uma matriz real simétrica e de uma matriz imaginária anti-simétrica.
-\end{lemma}
-
-\begin{lemma}\bref{[Noble,AlgLinApl-pt,1986]}
-As propriedades de matrizes são válidas:
-	\begin{itemize}
-		\item $\overline{AB} = \overline{A}.\overline{B}$
-		\item $(\overline{A})^t = (\overline{A^t})$
-	\end{itemize}
-\end{lemma}
-
-\begin{definition}\bref{[Noble,AlgLinApl-pt,1986]}
-	Uma matriz $P$ tal que $P^HP = PP^H = I$ é chamada matriz unitária. 
-\end{definition}
-
-\begin{definition}\bref{[Noble,AlgLinApl-pt,1986]}
-	Uma matriz $P$ real tal que $P^TP = PP^T = I$ é chamada matriz ortogonal.
-\end{definition}
-
-\begin{theorem}\bref{[Noble,AlgLinApl-pt,1986]}
-	\begin{itemize}
-		\item (i) Tanto as colunas quanto as linhas de uma matriz unitária (ou ortogonal) formal um cojunto ortonormal.
-		\item (ii) Se $P$ é unitária, então $|det P| = 1$.
-		\item (iii) Se $P$ e $Q$ são unitárias, então o mesmo acontece com $PQ$.
-		\item (iv) Se $P$ é unitária, então, para todos os $x$ e $y$, temos $(Px, Py), \lVert Px \rVert_2 = \lVert x \rVert_2$ e $\lVert P \rVert_2 = 1$.
-		\item (v) Se $\lambda$ for um autovalor da matriz unitária $P$, então $|\lambda| = 1$.
-	\end{itemize}
-\end{theorem}
+\input{./Resumo-AlgebraLinear-Common-Matrizes.tex}
 
 %******************************************************************************
 % Espaços e Subespaços Vetoriais

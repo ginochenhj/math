@@ -170,43 +170,8 @@ Seja $\mathsf{V}$ um espaço vetorial de corpo $K$ munido de produto interno. $u
 %******************************************************************************
 \section{Matrizes}
 
-\begin{definition}\bref{[Noble,AlgLinApl-pt,1986]}
-Chama-se de matriz transposta hermitiana, denotado por $A^H$, $A^H = \overline{A}^t$, que é a complexa cojugada da transposta ordinária.
-\end{definition}
+\input{./Resumo-AlgebraLinear-Common-Matrizes.tex}
 
-\begin{definition}\bref{[Noble,AlgLinApl-pt,1986]}
-Chama-se de matriz hermitiana uma matriz tal que $A^H = A$.
-\end{definition}
-
-\begin{lemma}\bref{[Noble,AlgLinApl-pt,1986]}
-Uma matriz hermitiana é a soma de uma matriz real simétrica e de uma matriz imaginária anti-simétrica.
-\end{lemma}
-
-\begin{lemma}\bref{[Noble,AlgLinApl-pt,1986]}
-As propriedades de matrizes são válidas:
-	\begin{itemize}
-		\item $\overline{AB} = \overline{A}.\overline{B}$
-		\item $(\overline{A})^t = (\overline{A^t})$
-	\end{itemize}
-\end{lemma}
-
-\begin{definition}\bref{[Noble,AlgLinApl-pt,1986]}
-	Uma matriz $P$ tal que $P^HP = PP^H = I$ é chamada matriz unitária. 
-\end{definition}
-
-\begin{definition}\bref{[Noble,AlgLinApl-pt,1986]}
-	Uma matriz $P$ real tal que $P^TP = PP^T = I$ é chamada matriz ortogonal.
-\end{definition}
-
-\begin{theorem}\bref{[Noble,AlgLinApl-pt,1986]}
-	\begin{enumerate}[label=(\roman*)]
-		\item Tanto as colunas quanto as linhas de uma matriz unitária (ou ortogonal) formal um cojunto ortonormal.
-		\item Se $P$ é unitária, então $|det P| = 1$.
-		\item Se $P$ e $Q$ são unitárias, então o mesmo acontece com $PQ$.
-		\item Se $P$ é unitária, então, para todos os $x$ e $y$, temos $(Px, Py), \lVert Px \rVert_2 = \lVert x \rVert_2$ e $\lVert P \rVert_2 = 1$.
-		\item Se $\lambda$ for um autovalor da matriz unitária $P$, então $|\lambda| = 1$.
-	\end{enumerate}
-\end{theorem}
 
 %******************************************************************************
 % Processo de Gram-Schmidt
@@ -316,7 +281,8 @@ Definimos a transformação linear $H_w$ como:
 \begin{theorem}\bref{[Noble,AlgLinApl-pt,1986]}
 	Qualquer matriz quadrada $A$, $n \times n$ pode ser reduzida, por uma transformação unitária $P^HAP$, a uma matriz $T$ triangular superior com os autovalores de $A$ sobre a diagonal de $T$. Chamamos $T$ uma forma canônica de Schur para $A$ e a decomposição $A = PTP^H$ é chamada de uma decomposição de Schur de $A$. Se $A$ e seus autovalores são reais, então podemos também tomar $P$ real.
 \end{theorem}
-Algoritmo:
+
+Algoritmo:\\
 Dado uma matriz quadrada $A$, $n \times n$:
 \begin{enumerate}
 	\item Achar os $n$ autovalores, $\lambda_1 \dots, \lambda_n$
@@ -333,6 +299,52 @@ Dado uma matriz quadrada $A$, $n \times n$:
 	\item $A_n \leftarrow \lambda_n$ e $P \leftarrow Q_1 Q_2 Q_3 \dots Q_n$
 \end{enumerate}
 
+\begin{theorem}\bref{[Noble,AlgLinApl-pt,1986]}
+	Uma matriz $A$, $n \times n$ é normal (simétrica real, hermitiana, anti-simétrica, unitária) se e somente se $A$ pode ser reduzida, por uma transformação unitária, a uma forma canônica de Schur diagonal $D = P^HAP$ onde $P$ é unitária e $D$ é diagonal; os autovalores de $A$ estarão sobre a diagonal de $D$. Se $A$ e seus autovalores são reais, então podemos tomar $P$ real e, portanto ortogonal.
+\end{theorem}
+
+\begin{theorem}\label{Schur Diagonal}\bref{[Noble,AlgLinApl-pt,1986]}
+	Uma matriz $A$, $n \times n$ é normal (simétrica real, hermitiana, anti-simétrica, unitária) se e somente se $A$ pode ser reduzida, por uma transformação unitária, a uma forma canônica de Schur diagonal $D = P^HAP$ onde $P$ é unitária e $D$ é diagonal; os autovalores de $A$ estarão sobre a diagonal de $D$. Se $A$ e seus autovalores são reais, então podemos tomar $P$ real e, portanto ortogonal.
+\end{theorem}
+
+\begin{theorem}\bref{[Noble,AlgLinApl-pt,1986]}
+	Uma matriz $A$, $n \times n$ é normal (simétrica real, hermitiana, anti-simétrica, unitária) se e somente se $A$ tem um conjunto linearmente independente de $n$ autovetores que podem ser escolhidos de maneira a formar um conjunto ortonormal. Além disso, no caso de uma matriz normal, um autovalor de multiplicidade $s$ tem associado um conjunto ortonormal de $s$ autovetores.
+\end{theorem}
+
+%******************************************************************************
+% Decomposição em Valores Singulares
+%******************************************************************************
+\section{Decomposição em Valores Singulares}
+
+\begin{definition}\label{Valores Singulares}\bref{[Noble,AlgLinApl-pt,1986]} Seja a matriz $A$, $m \times n$. As raízes quadradas estritamente positivas de $\sigma_i$ dos autovalores de $A^HA = A^HA$ são chamados de valores singulares de $A$.
+\end{definition}
+
+\begin{theorem}\bref{[Noble,AlgLinApl-pt,1986]}
+	Suponha a matriz $A$, $m \times n$ tem posto $k$. Existem então números $\sigma_1 \geq \sigma_2 \geq \sigma_3 \geq \dots \sigma_k > 0$, os valores singulares (definição \ref{Valores Singulares}) de $A$ uma matriz unitária $U$, $m \times m$, $U = [ \, u_1 \, u_2 \, u_3 \, \dots u_m \, ]$ e uma matriz unitária $V$, $n \times n$, $V = [ \, v_1 \, v_2 \, v_3 \, \dots v_n \, ]$ tais que:
+	\begin{flalign*}
+		&\Sigma = U^HAV, \text{ onde: } \left\{\begin{array}{l}
+			A \text{ é } m \times n\\
+			U \text{ e } V \text{ são } m \times m \text{ e } n \times n \text{ matrizes unitárias }\\
+			\Sigma = \left[\begin{array}{cccc}
+				\sigma_1 &        0 &  \dots &        0 \\
+				       0 & \sigma_2 &  \dots &        0 \\
+				  \vdots & \vdots   & \ddots &   \vdots \\
+				       0 &        0 &  \dots & \sigma_m \\
+				  \vdots & \vdots   & \vdots &   \vdots \\
+				       0 &        0 &  \dots &        0
+			\end{array}\right] \text{ é } m \times n
+		\end{array}\right.&&
+	\end{flalign*}
+\end{theorem}
+
+Algoritmo:\\
+Dado uma matriz quadrada $A$, $m \times n$ e $A = U\Sigma V^H$:
+\begin{enumerate}
+	\item $A^H A = V\Sigma^HU^HU\Sigma V^H = V(\Sigma^H\Sigma)V^H$, $\sigma^2_i$ é autovalor de $\Sigma^H\Sigma$ (Teorema \ref{Schur Diagonal})
+	\item $AA^H = U\Sigma V^HV\Sigma^H U^H = U(\Sigma\Sigma^H)U^H$, $\sigma^2_i$ é autovalor de $\Sigma\Sigma^H$ (Teorema \ref{Schur Diagonal})
+	\item Calcular $V = [ \, v_1 \, v_2 \, v_3 \, \dots v_n \, ]$, onde $v_i$ é o autovetor associado a cada $\sigma^2_i$ normalizado da matriz $A^HA$
+	\item Calcular $U = [ \, u_1 \, u_2 \, u_3 \, \dots u_m \, ]$, onde $u_i$ é o autovetor associado a cada $\sigma^2_i$ normalizado da matriz $AA^H$
+\end{enumerate}
 
 \end{document}
 
