@@ -13,7 +13,7 @@
 \usepackage{enumitem}
 \usepackage{tabto}
 \usepackage{xcolor}
-
+\usepackage{listings}
 
 \geometry{
 	a4paper,
@@ -22,6 +22,19 @@
 	right=20mm,
 	top=15mm,
 	bottom=15mm,
+}
+
+\lstset{basicstyle=\ttfamily,
+	 rulesepcolor=\color{black},
+	 showspaces=false,showtabs=false,tabsize=2,
+	 numberstyle=\tiny,
+	 stringstyle=\color{sh_string},
+	 keywordstyle = \color{sh_keyword}\bfseries,
+	 commentstyle=\color{sh_comment}\itshape,
+	 captionpos=b,
+	 xleftmargin=0.7cm, xrightmargin=0.5cm,
+	 lineskip=-0.3em,
+	 escapebegin={\lstsmallmath}, escapeend={\lstsmallmathend}
 }
 
 \input{../include/mathstatement.tex}
