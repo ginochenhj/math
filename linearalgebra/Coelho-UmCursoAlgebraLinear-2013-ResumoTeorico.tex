@@ -1,0 +1,2049 @@
+\documentclass[10pt,a4paper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+%\usepackage{mathalfa}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{framed}
+\usepackage{enumitem}
+\usepackage{tabto}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+
+\geometry{
+	a4paper,
+	total={210mm,297mm},
+	left=20mm,
+	right=20mm,
+	top=15mm,
+	bottom=15mm,
+}
+
+\lstset{basicstyle=\ttfamily,
+	 rulesepcolor=\color{black},
+	 showspaces=false,showtabs=false,tabsize=2,
+	 numberstyle=\tiny,
+	 stringstyle=\color{sh_string},
+	 keywordstyle = \color{sh_keyword}\bfseries,
+	 commentstyle=\color{sh_comment}\itshape,
+	 captionpos=b,
+	 xleftmargin=0.7cm, xrightmargin=0.5cm,
+	 lineskip=-0.3em,
+	 escapebegin={\lstsmallmath}, escapeend={\lstsmallmathend}
+}
+
+\input{../../include/mathstatement.tex}
+\input{../../include/mathsetdef.tex}
+\input{../../include/booksections.tex}
+
+\setlist[enumerate]{
+	%leftmargin=\parindent,
+	labelindent=\parindent,
+	topsep=.3em,
+	itemsep=-.1em,
+	partopsep=1ex,
+	parsep=1ex,
+	%itemindent=\parindent
+}
+\setlist[description]{
+	leftmargin=\parindent,
+	labelindent=\parindent,
+	topsep=.3em,
+	itemsep=-.1em,
+	partopsep=1ex,
+	parsep=1ex
+}
+\setlist[itemize]{
+	%leftmargin=\parindent,
+	labelindent=\parindent,
+	topsep=.3em,
+	itemsep=-.1em,
+	partopsep=1ex,
+	parsep=1ex
+}
+
+%\setlength\parindent{0pt}
+
+\author{Gino Chen Hsiang-Jan}
+\title{Resumo\\Um Curso de Álgebra Linear-Edusp-2013\\Flávio Ulhoa Coelho\\Mary Lilian Lourenço}
+\date{11 de Julho de 2016}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\newpage
+
+
+%&&&******************************************************************************
+%&&&******************************************************************************
+%&&& 1. Preliminares
+%&&&******************************************************************************
+%&&&******************************************************************************
+\chapter{Preliminares}
+
+
+
+
+%******************************************************************************
+% Números
+%******************************************************************************
+% A 2016/07/30
+\section{Números}
+\subsection{Números Naturais, Inteiros, Racionais e Reais}
+
+\begin{description}
+	\item[Números Naturais ] $\nN = \{ 1, 2, 3, \dots \}, \, \nN_0 = \{ 0, 1, 2, 3, \dots \}$
+	\item[Números Inteiros ] $\nZ = \{ \dots, -3, 1, 0, 1, 2, 3, \dots \}, \, \nZ^* = \nZ \setminus \{ 0 \}$
+	\item[Números Racionais] $\nQ = \{ \frac{p}{q} :p, q \in \nZ \text{ e } q \neq 0 \}, \, \nQ^* = \nQ \setminus \{ 0 \}$
+	\item[Números Reais    ] Denotado por $\nR, \, \nR^* = \nR \setminus \{ 0 \}$
+\end{description}
+
+\subsection{Números Complexos}
+\[
+	\nC = \{ a + b \ci : a, b \in \nR \text{ e } \ci^2 = -1 \}
+\]
+Considere $z = a + b\ci, w = c + d \ci \in \nC$. Definimos a soma como:
+\[
+	z + w = (a + c) + (b + d)\ci
+\]
+Definimos o produto como:
+\[
+	z.w = (ac - bc) + (bc + ad)\ci
+\]
+Número complexo usando coordenadas polares, em $\nR^2$:\\
+\scalebox{.75}{\begin{tikzpicture}[dot/.style={circle,inner sep=1pt,fill,label={#1},name=#1}, line/.style={>=latex}] 
+	\coordinate (b) at ( 0, 3) ;
+	\coordinate (a) at ( 4, 0) ;
+	\coordinate (z) at ( 4, 3) ;
+	
+	\node (bLabel) at ($(b) + (-0.2,    0)$) {$b$};
+	\node (aLabel) at ($(a) + (   0, -0.2)$) {$a$};
+	\node[anchor=west] (zLabel) at ($(z) + ( 0.1,  0.1)$) {$z = (a, b)$ ou $z = a + b\ci$};
+	\node (ThetaLabel) at ($(0, 0) + (1.2, 0.4)$) {$\theta$};
+	\node (NormLabel) at ($(2, 1.5)  + (-0.2, 0.2)$) {$|z|$};
+
+	\draw[->, line] (-0.5,    0) -- (5, 0);
+	\draw[->, line] (   0, -0.5) -- (0, 4);
+	\draw[-, line, densely dotted] ($(b)$) -- ($(z)$);
+	\draw[-, line, densely dotted] ($(a)$) -- ($(z)$);
+	\draw[-, line] (0, 0) -- ($(z)$);
+	\tkzDrawPoints(z)
+	\draw (bLabel);
+	\draw (aLabel);
+	\draw (zLabel);
+	\draw (ThetaLabel);
+	\draw (NormLabel);
+	\draw[->, line](0, 0) (0:1) arc (0:atan(0.75):1);
+\end{tikzpicture}}\\
+Seja $r = |z|$ temos:
+\begin{flalign*}
+	&a = r\cos \theta &\\
+	&b = r\sen \theta &\\
+	&\overline{z} := a - b\ci &\\
+	&z = r\,\ce ^ {\theta \ci}&\\
+	&\overline{z} = r\,\ce ^ {-\theta \ci}
+\end{flalign*}
+
+\subsection{Teorema Fundamental da Álgebra}
+
+\begin{theorem}
+	Todo polinômio com coeficientes em $\nC$ possui raízes complexas.
+\end{theorem}
+
+\begin{definition}
+	Um conjunto que satisfaz a propriedade do teorema acima é chamado de algebricamente fechado.
+\end{definition}
+
+\begin{remark}
+	O conjunto $\nC$ é algebricamente fechado e $\nQ$, $nR$ não são. Ou seja, existem polinômio em $\nQ$ e $nR$ que não possuem raízes nestes conjuntos.
+\end{remark}
+
+%******************************************************************************
+% Corpos
+%******************************************************************************
+\section{Corpos}
+\begin{definition}
+	Um conjunto não vazio $\eK$ é um corpo se em $\eK$ pudermos definir duas operações, denotadas por +(adição) e . (multiplicação). satisfazendo as seguintes propriedades:
+	\begin{description}
+		\item[propriedade comutativa] (A1) $a + b = b + a, \forall a, b \in \eK$ 
+		\item[propriedade associativa] (A2) $a + (b + c) = (a + b) + c, \forall a, b, c \in \eK$ 
+		\item[elemento neutro da soma] (A3) Existe um elemento em $\eK$, denotado por $0$ e chamado de elemento neutro da adição, que satisfaz $0 + a = a + 0 = a, \forall a \in \eK$
+		\item[inserso aditivo] (A4) Para cada $a \in \eK$, existe um número em $\textsf{K}$ , denotado por $-a$ e chamado de oposto de $a$ (ou inverso aditivo de $a$) tal que $a + (-a) = 0$
+		\item[propriedade comutativa] (M1) $a.b = b.a, \forall a, b \in \eK$ (propriedade comutativa)
+		\item[propriedade associativa] (M2) $a.(b.c) = (a.b).c, \forall a, b, c \in \eK$ (propriedade associativa)
+		\item[elemento neutro da multiplicação] (M3) Existe um elemento em $\eK$, denotado por $1$ e chamado de elemento neutro da multiplicação, tal que $1.a = a.1 = a, \forall a \in \eK$
+		\item[inverso multiplicativo] (M4) Para cada elemento não nulo $a \in \eK$, existe um elemento em $\eK$, denotado por $a^{-1}$ e chamando de inverso multiplicativo  de $a$, tal que $a.a^{-1} = a^{-1}.a = 1$.
+	\end{description}
+\end{definition}
+
+
+
+
+%******************************************************************************
+% Sistemas Lineares
+%******************************************************************************
+% A 2016/07/11
+\section{Resolução de Sistemas Lineares}
+
+\begin{definition}
+	Dizemos que dois sistemas de equações a $n$ incógnitas são equivalentes se tiverem as menas soluções.
+\end{definition}
+
+\begin{definition}
+	Um Sistema linear
+	\[
+		\left\{
+		\begin{array}{cccc}
+			b_{11}x_1 & + \dots + & b_{1n}x_n & = 0   \\
+			\vdots    & \vdots    & \vdots    & \vdots\\
+			b_{r1}x_1 & + \dots + & b_{rn}x_n & = 0   
+		\end{array}
+		\right.
+	\]
+	será chamado de escalonado se existirem $1 \leq l_1 < l_2 < \dots < l_r \leq n$ tais que $b_{il_i} \neq 0$, para cada $i = 1, \dots, r$ e $b_{ij} = 0$ se $1 \leq j < l_i$.
+\end{definition}
+
+\begin{proposition}
+	Todo sistema linear com $m$ equações e com coeficientes em um corpo é equivalente a um sistema escalonado com $r \leq m$ equações.
+\end{proposition}
+
+\begin{proposition}
+	Se o número de equações em um sistema linear homogêneo com coeficientes em um corpo for menor do que o número de suas incógnitas, então tal sistema terá uma solução não trivial.
+\end{proposition}
+
+
+
+
+%******************************************************************************
+% Matrizes
+%******************************************************************************
+% A 2016/07/30
+\section{Matrizes}
+\begin{definition}
+	Sejam $m, n$ dois inteiros positivos. Uma matriz $m$ por $n$ $A$ sobre $\eK$ é dada por $m \times n$ valores $a_{ij} \in \eK$, com $1 \leq i \leq m$, $1 \leq j \leq n$ agrupados em $m$ linhas e $n$ colunas e será representado como:
+	\[
+		A = (a_{ij})_{i, j} = 
+		\left(
+		\begin{array}{ccccc}
+			a_{11} & a_{12} & a_{13} &  \dots & a_{1n} \\
+			a_{21} & a_{22} & a_{23} &  \dots & a_{2n} \\
+			a_{31} & a_{32} & a_{33} &  \dots & a_{3n} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			a_{m1} & a_{m2} & a_{m3} &  \dots & a_{mn} 
+		\end{array}
+		\right)
+	\]
+\end{definition}
+
+
+\begin{definition}
+	O conjunto de todas as matrizes $m \times n$ sobre $\eK$ é denotado por: $\fcM_{m \times n}(\eK)$
+\end{definition}
+
+
+\begin{definition}
+	O conjunto de todas as matrizes quadradas $n \times n$ sobre $\eK$ é denotado por: $\fcM_{n}(\eK)$
+\end{definition}
+
+
+\begin{definition}[Soma de Matrizes] 
+	Se $A = (a_{ij})_{i,j}, B = (b_{ij})_{i,j} \in \fcM_{m \times n}(\eK)$, então a soma $A + B$ é a matriz $C  = (c_{ij})_{i,j} \in \fcM_{m \times n}(\eK)$, tal que, para cada par $(i, j)$, temos $c_{ij} = a_{ij} + b_{ij}$, isto é:
+	\[
+		A + B = 
+		\left(\begin{array}{ccccc}
+			a_{11} & a_{12} & a_{13} &  \dots & a_{1n} \\
+			a_{21} & a_{22} & a_{23} &  \dots & a_{2n} \\
+			a_{31} & a_{32} & a_{33} &  \dots & a_{3n} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			a_{m1} & a_{m2} & a_{m3} &  \dots & a_{mn} 
+		\end{array}\right)
+		+
+		\left(\begin{array}{ccccc}
+			b_{11} & b_{12} & b_{13} &  \dots & b_{1n} \\
+			b_{21} & b_{22} & b_{23} &  \dots & b_{2n} \\
+			b_{31} & b_{32} & b_{33} &  \dots & b_{3n} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			b_{m1} & b_{m2} & b_{m3} &  \dots & b_{mn} 
+		\end{array}\right)
+		=
+	\]
+	\[
+		= \left(\begin{array}{ccccc}
+			a_{11} + b_{11} & a_{12} + b_{12} & a_{13} + b_{13} &  \dots & a_{1n} + b_{1n} \\
+			a_{21} + b_{21} & a_{22} + b_{22} & a_{23} + b_{23} &  \dots & a_{2n} + b_{2n} \\
+			a_{31} + b_{31} & a_{32} + b_{32} & a_{33} + b_{33} &  \dots & a_{3n} + b_{3n} \\
+			\vdots          & \vdots          & \vdots          & \ddots & \vdots          \\
+			a_{m1} + b_{m1} & a_{m2} + b_{m2} & a_{m3} + b_{m3} &  \dots & a_{mn} + b_{mn} 
+		\end{array}\right)
+	\]
+\end{definition}
+
+
+\begin{definition}[Multiplicação por escalar] 
+	Se $A = (a_{ij})_{i,j} \in \fcM_{m \times n}(\eK)$ e $\lambda \in \eK$, então o produto de $\lambda$ por $A$ é a matriz $B  = (b_{ij})_{i,j} \in \fcM_{m \times n}(\eK)$, tal que, para cada par $(i, j)$, temos $b_{ij} = \lambda a_{ij}$, isto é:
+	\[
+		\lambda A = 
+		\lambda
+		\left(\begin{array}{ccccc}
+			a_{11} & a_{12} & a_{13} &  \dots & a_{1n} \\
+			a_{21} & a_{22} & a_{23} &  \dots & a_{2n} \\
+			a_{31} & a_{32} & a_{33} &  \dots & a_{3n} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			a_{m1} & a_{m2} & a_{m3} &  \dots & a_{mn} 
+		\end{array}\right)
+		=
+		\left(\begin{array}{ccccc}
+			\lambda a_{11} & \lambda a_{12} & \lambda a_{13} &  \dots & \lambda a_{1n} \\
+			\lambda a_{21} & \lambda a_{22} & \lambda a_{23} &  \dots & \lambda a_{2n} \\
+			\lambda a_{31} & \lambda a_{32} & \lambda a_{33} &  \dots & \lambda a_{3n} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			\lambda a_{m1} & \lambda a_{m2} & \lambda a_{m3} &  \dots & \lambda a_{mn} 
+		\end{array}\right)
+	\]
+\end{definition}
+
+
+\begin{definition}[Produto de Matrizes] 
+	Sejam $A = (a_{ij})_{i,j} \in \fcM_{m \times n}(\eK)$ e $B = (b_{ij})_{i,j} \in \fcM_{n \times p}(\eK)$, isto é, o número de colunas de $A$ é igual ao número de linhas de $B$. Então o produto de $A$ por $B$ é a matriz $C  = (c_{ij})_{i,j} \in \fcM_{m \times p}(\eK)$, tal que, para cada par $(i, j)$, temos $c_{ij} = \displaystyle \sum_{l = 1}^n a_{il}b_{lj}, \, i = 1, 2, 3, \dots, m \text{ e } j = 1, 2, \, \dots, p$, ou então:
+	\[
+		A . B = 
+		\left(\begin{array}{ccccc}
+			a_{11} & a_{12} & a_{13} &  \dots & a_{1n} \\
+			a_{21} & a_{22} & a_{23} &  \dots & a_{2n} \\
+			a_{31} & a_{32} & a_{33} &  \dots & a_{3n} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			a_{m1} & a_{m2} & a_{m3} &  \dots & a_{mn} 
+		\end{array}\right)
+		.
+		\left(\begin{array}{ccccc}
+			b_{11} & b_{12} & b_{13} &  \dots & b_{1n} \\
+			b_{21} & b_{22} & b_{23} &  \dots & b_{2n} \\
+			b_{31} & b_{32} & b_{33} &  \dots & b_{3n} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			b_{m1} & b_{m2} & b_{m3} &  \dots & b_{mn} 
+		\end{array}\right)
+		=
+	\]
+	\[
+		= \left(\begin{array}{ccccc}
+			\displaystyle \sum_{l = 1}^n a_{1l}b_{l1} & \displaystyle \sum_{l = 1}^n a_{1l}b_{l2} & \displaystyle \sum_{l = 1}^n a_{1l}b_{l3} &  \dots & \displaystyle \sum_{l = 1}^n a_{1l}b_{lp} \\ [1.5em]
+			\displaystyle \sum_{l = 1}^n a_{2l}b_{l1} & \displaystyle \sum_{l = 1}^n a_{2l}b_{l2} & \displaystyle \sum_{l = 1}^n a_{2l}b_{l3} &  \dots & \displaystyle \sum_{l = 1}^n a_{2l}b_{lp} \\ [1.5em]
+			\displaystyle \sum_{l = 1}^n a_{3l}b_{l1} & \displaystyle \sum_{l = 1}^n a_{3l}b_{l2} & \displaystyle \sum_{l = 1}^n a_{3l}b_{l3} &  \dots & \displaystyle \sum_{l = 1}^n a_{3l}b_{lp} \\ [1.5em]
+			\vdots                                    & \vdots                                    & \vdots                                    & \ddots & \vdots                \\ 
+			\displaystyle \sum_{l = 1}^n a_{ml}b_{l1} & \displaystyle \sum_{l = 1}^n a_{ml}b_{l2} & \displaystyle \sum_{l = 1}^n a_{ml}b_{l3} &  \dots & \displaystyle \sum_{l = 1}^n a_{ml}b_{lp} 
+		\end{array}\right)
+	\]
+\end{definition}
+
+\begin{definition}[Matriz Identidade]
+	Chama-se matriz identidade de dimensão $n$, denotada por $\Id_n$ ou $\II_n$ definida como:
+	\[
+		\Id_n = (a_{ij})_{i,j} = \left\{\begin{array}{ll}
+		1, \text{ se } i = j\\
+		0, \text{ se } i \neq j 
+		\end{array}\right.
+	\]
+	isto é:
+	\[
+		\Id_n = \delta_{ij} = 
+		\left(\begin{array}{ccccc}
+			     1 &      0 &      0 &  \dots &      0 \\
+			     0 &      1 &      0 &  \dots &      0 \\
+			     0 &      0 &      1 &  \dots &      0 \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			     0 &      0 &      0 &  \dots &      1
+		\end{array}\right)
+	\]
+\end{definition}
+
+\begin{definition}[Matriz Transposta]
+	Seja $A = (a_{ij})_{i,j} \in \fcM_{m \times n}(\eK)$, definimos a sua transposta, denotada por $A^t$ ou $A'$ sendo $A^t = (b_{ij})_{i,j} \fcM_{n \times m}(\eK)$ tal que $b_{ij} = a_{ji}$.
+\end{definition}
+
+\begin{definition}[Função Traço]
+	Sejam $A = (a_{ij})_{i,j} \in \fcM_{n}(\eK)$, definimos o traço de $A$, denotado por $\tr A$ como sendo a soma dos elementos da sua diagonal principal, isto é: 
+	\[
+		\tr A = \sum_{i = 1}^{n} a_{ii}
+	\]
+\end{definition}
+
+\begin{definition}[Posto]
+	Seja $A = (a_{ij})_{i,j} \in \fcM_{m \times n}(\eK)$, definimos o seu posto como sendo o número de linhas não nulas em sua forma escalonada.
+\end{definition}
+
+\begin{definition}[Matriz Invertível]
+	Uma matriz $A = (a_{ij})_{i,j} \in \fcM_{n}(\eK)$ é invertível se existir uma matriz $B = (b_{ij})_{i,j} \in \fcM_{n}(\eK)$ tal que $A.B = B.A = \Id_n$.
+\end{definition}
+
+\begin{theorem}[Teorema de Laplace]
+	Seja uma matriz $A = (a_{ij})_{i,j} \in \fcM_{n}(\eK)$ então:
+	\[
+		\det A =
+		\left\{\begin{array}{ll}
+     a_{11}                                                         &, \text{ se } n = 1\\
+     \displaystyle \sum_{j = 1}^{n} (-1)^{j + 1} a_{1j} \det A_{1j} &, \text{ se } n > 1
+		\end{array}\right.
+	\], onde $A_{ij} \in \fcM_{n - 1}(\eK)$ é a matriz formada a partir de $A$ retirando a sua $i$-ésima linha e a sua $j$-ésima coluna.
+\end{theorem}
+
+\begin{theorem}[Teorema de Laplace]
+	Uma matriz $A = (a_{ij})_{i,j} \in \fcM_{n}(\eK)$ é invertível se e somente se $\det A \neq 0$
+\end{theorem}
+
+\begin{definition}[Matriz Adjunta]
+	Seja $A = (a_{ij})_{i,j} \in \fcM_{m \times n}(\eK)$, denotado por $\adj(A)$ ou $\ad(A)$ a matriz adjunta de $A$, $\ad(A) = (b_{ij})_{i,j}$ tal que, para cada par $(i, j)$, $b_{ij} = (-1)^{i + j + 1}\det A_{ij}$, onde $A_{ij} \in \fcM_{n - 1}(\eK)$ é a matriz formada a partir de $A$ retirando a sua $i$-ésima linha e a sua $j$-ésima coluna. Os elementos $b_{ij}$ são chamados de cofatores em $(i, j)$ de $A$.
+\end{definition}
+
+\begin{lemma}
+	Sejam $A = (a_{ij})_{i,j} \in \fcM_{m \times n}(\eK)$, e $b_{ij}$ um cofator em $(i, j)$ de $A$.
+	\begin{itemize}
+		\item $\displaystyle \sum_{j = 1}^{n} a_{ij}b_{lj} = \delta_{il}$
+		\item $A.\ad(A) = \ad(A).A = (\det A) . \Id_n$
+	\end{itemize}
+\end{lemma}
+
+
+%&&&******************************************************************************
+%&&&******************************************************************************
+%&&& 2. Espaços Vetoriais
+%&&&******************************************************************************
+%&&&******************************************************************************
+\chapter{Espaços Vetoriais}
+
+
+
+
+%******************************************************************************
+% Espaços Vetoriais
+%******************************************************************************
+\section{Espaços Vetoriais}
+
+\begin{definition}
+	Um conjunto não vazio $\eV$ é um espaço vetorial sobre um corpo $\eK$ se em seus elementos, denominados vetores, estiverem definidas as seguintes duas operações:
+	\begin{description}
+		\item[(A)] A cada par $u, v$ de vetores de $\eV$ corresponde um vetor $u + v \in \eV$, chamados de soma de $u$ e $v$ de modo que:
+		\begin{description}
+			\item[(A1) propriedade comutativa ] $u + v = v + u, \, \forall u, v \in \eV$.
+			\item[(A2) propriedade associativa] $(u + v) + w = v + (u + w), \, \forall u, v \in \eV$.
+			\item[(A3) vetor nulo             ] existe em $\eV$ um vetor, denominado vetor nulo e denotado por $0$, tal que $v + 0 = 0 + v = v \, \forall v \in \eV$.
+			\item[(A4) inverso aditivo        ] a cada vetor $v \in \eV$ existe em $\eV$, denotado por $-v$, tal que $v + (-v) = 0$.
+		\end{description}
+		\item[(M)] A cada par $\alpha \in \eK$, corresponde um vetor $\alpha . v \in \eV$, denominado produto por escalar de $\alpha$ por $v$ de modo que:
+		\begin{description}
+			\item[(M1) propriedade comutativa      ] $(\alpha \beta).v = \alpha (\beta . v), \forall \alpha, \beta \in \eK$ e $\forall v \in \eV$.
+			\item[(M2) elemento identidade de $\eK$] $1 . v = v, \, \forall v \in \eV$.
+		\end{description}
+		\item[(D1) distributiva] $\alpha . (u + v) = \alpha . u + \alpha . v, \forall \alpha \in \eK$ e $\forall u, v \in \eV$.
+		\item[(D2) distributiva] $(\alpha + \beta) v = \alpha . v + \beta . v, \forall \alpha, \beta \in \eK$ e $\forall v \in \eV$.
+	\end{description}
+\end{definition}
+
+\begin{definition}[Espaço de Funções]
+	Sejam $X$ um conjunto qualquer não vazio e $\fcF(X, \eK)$ o conjunto de todas as funções $\ff: X \rightarrow \eK$. Definimos as seguintes operações em $\fcF(X, \eK)$:
+	\begin{enumerate}
+		\item para $\ff, \fg \in \fcF(X, \eK)$, a soma das funções $\ff$ e $\fg$, denotado por $\ff + \fg$ tal que, $\ff + \fg : X \rightarrow \eK$ dado por: $(\ff + \fg)(x) = \ff(x) + \fg(x), \, \forall x \in X$.
+		\item para $\ff \in \fcF(X, \eK)$ e $\alpha \in \eK$, o produto de $\alpha$ e $\ff$, denotado por $\alpha . \ff$ tal que, $\alpha . \ff : X \rightarrow \eK$ dado por: $(\alpha . \ff)(x) = \alpha . \ff(x), \, \forall x \in X$.
+	\end{enumerate}
+\end{definition}
+
+
+
+
+%******************************************************************************
+% Espaços Vetoriais
+%******************************************************************************
+% A 2016-07-15
+\section{Base}
+\begin{definition}
+	Seja $\eV$ um espaço vetorial sobre $\eK$.
+	\begin{enumerate}
+		\item Um vetor $v \in \eV$ é uma combinação linear dos vetores $v_1, \dots, v_n \in \eV$ se existirem escalares $\alpha_1, \dots, \alpha_n \in \eK$ tais que
+		\[
+			v = \alpha_1 v_1 + \dots + \alpha_n v_n = \sum_{i = 1}^{n} \alpha_i v_i.
+		\]
+		\item Seja $\bB$ um cojunto de $\eV$. Dizemos que $\bB$ é um conjunto gerador de $\eV$, ou $\bB$ gera $\eV$ se todo elemento de $\eV$ for uma combinação linear de um número finito de elementos de $\bB$.
+		\item O conjunto vazio gera o espaço vetorial $\{0\}$.
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+	Todo espaço vetorial possui um conjunto gerador.
+\end{lemma}
+
+\begin{lemma}
+	Seja $\bB$ um cojunto gerador de um espaço vetorial $\eV$. Todo subconjunto de $\eV$ que contenha $\bB$ é um cojunto gerador.
+\end{lemma}
+
+\begin{lemma}
+	Seja $\eV$ um $\eK$-espaço vetorial e $\{v_1, \dots, v_n\} \subseteq \eV$. O subconjunto de $\eV$ formado por todas as combinações lineares de $v_1, \dots, v_n$ é também um $\eK$-espaço vetorial.
+\end{lemma}
+
+\begin{definition}
+	Sejam $\eV$ um espaço vetorial sobre $\eK$ e $\bB$ um subconjunto de $\eV$.
+	
+	\begin{enumerate}
+		\item Dizemos que $\bB$ é linearmente independente, ou l.i., ou LI, se $\alpha_1 v_1 + \dots + \alpha_n v_n = 0$, para $v_i \in \bB$ e $\alpha_i \in \eK, \, i = 1, \dots, n$. implica que $\alpha_1 = \dots = \alpha_n = 0$.
+		\item O conjunto é chamado $\bB$ linearmente dependente, ou l.d., ou LD, se não for linearmente independente.
+		\item O conjunto vazio é linearmente independente.
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+	Todo conjunto de contendo o vetor nulo é LD.
+\end{lemma}
+
+\begin{lemma}
+	Todo espaço vetorial não nulo possui um conjunto LI não vaio.
+\end{lemma}
+
+\begin{lemma}
+	Todo subconjunto de um conjunto linearmente independente é linearmente independente.
+\end{lemma}
+
+\begin{definition}
+	Seja $\eV$ um espaço vetorial sobre $\eK$. Dizemos que $\bB$ um subconjunto de $\eV$ é uma base de $\eV$ se.
+	\begin{enumerate}
+		\item $\bB$ for um conjunto gerador de $\eV$.
+		\item $\bB$ for linearmente independente.
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+	O conjunto vazio é uma base do espaço vetorial $\{ 0 \}$.
+\end{lemma}
+
+\begin{definition}
+	Dizemos que um espaço vetorial $\eV$ sobre $\eK$ é finitamente gerado se possuir um conjunto gerador finito.
+\end{definition}
+
+\begin{proposition}
+	Seja $\eV$ um $\eK$-espaço vetorial finitamente gerado não nulo e assuma que $\{ v_1, \dots, v_m\}$ seja um conjunto gerador de $\eV$. Então todo conjunto linearmente independente de vetores em $\eV$ tem no máximo $m$ elementos.
+\end{proposition}
+
+\begin{corollary}
+	Seja $\eV$ um $\eK$-espaço vetorial finitamente gerado não nulo. Então duas bases quaisquer de $\eV$ têm o mesmo número de elementos.
+\end{corollary}
+
+\begin{definition}[Dimensão de uma base]
+	Sejam $\eV$ um espaço vetorial sobre $\eK$. Se $\eV$ admite uma base finita, então chamamos de dimensão de $\eV$ o número de elementos de tal base. Caso contrário dizemos que a dimensão de $\eV$ é infinita.
+\end{definition}
+
+
+\begin{corollary}
+	Seja $\eV$ um espaço vetorial de dimensão $n \geq 1$ e seja $\bB$ um subconjunto de $\eV$ com $n$ elementos. As seguintes afirmações são equivalentes:
+	\begin{enumerate}
+		\item $\bB$ é uma base.
+		\item $\bB$ for linearmente independente.
+		\item $\bB$ é um conjunto gerador de $\eV$.
+	\end{enumerate}
+\end{corollary}
+
+\begin{proposition}
+	Sejam $\eV$ um espaço vetorial sobre $\eK$ e considere $\bB = \{ v_1, \dots, v_m \}$ um conjunto LI em $\eV$. Se existir um $v \in \eV$ que não seja combinação linear dos elementos de $\bB$, então $\{ v_1, \dots, v_m, v \}$ é linearmente independente.
+\end{proposition}
+
+\begin{theorem}
+	Todo espaço vetorial finitamente gerado não nulo possui uma base.
+\end{theorem}
+
+\begin{theorem}
+	Seja $\eV$ um espaço vetorial finitamente gerado e seja $\bB$ conjunto LI em $\eV$. Então existe uma base de $\eV$ contendo $\bB$.
+\end{theorem}
+
+\begin{proposition}
+	Seja $\eV$ um $\eK$-espaço vetorial de dimensão $n \geq 1$ e seja $\bB \subseteq \eV$. As seguintes afirmações são equivalentes:
+	\begin{enumerate}
+		\item $\bB$ é uma base de $\eV$.
+		\item Cada elemento de $\eV$ se escreve de maneira única como combinação linear de $\bB$.
+	\end{enumerate}
+\end{proposition}
+
+\begin{definition}
+	Seja $\eV$ um espaço vetorial de dimensão $n \geq 1$ e seja $\bB = \{ v_1, \dots, v_n \}$ uma base de $\eV$. Uma base ordenada de $\eV$ é uma sequência ordenada dos elementos de $\bB$. Dado um $v \in \eV$, existe univocamente valores $\alpha_1, \dots, \alpha_n \in \eK$ tais que $v = \alpha_1 v_1 + \dots + \alpha_n v_n$. Denotaremos como $[v]_\bB = (\alpha_1, \dots, \alpha_n)_\bB$ e dizemos que $\alpha_1, \dots, \alpha_n$ são coordenadas da base ordenada $\bB$.
+\end{definition}
+
+\begin{definition}
+	Seja $\eV$ um espaço vetorial de dimensão $n \geq 1$ e seja $\bB = \{ v_1, \dots, v_n \}$ uma base de $\eV$. Uma base ordenada de $\eV$ é uma sequência ordenada dos elementos de $\bB$.
+\end{definition}
+
+
+
+
+%******************************************************************************
+% Subespaços Vetoriais
+%******************************************************************************
+% A 2016-07-11
+\section{Subespaços}
+
+\begin{definition}[Subespaços Vetoriais]
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$. Um subconjunto $\eW$ de $\eV$ é um subespaço vetorial de $\eV$ se a restrição das operações de $\eV$ a $\eW$ torna esse conjunto um $\eK$-espaço vetorial.
+\end{definition}
+
+\begin{proposition}
+	Sejam $\eV$ um espaço vetorial sobre um corpo $\eK$ um subconjunto e $\eW \subseteq \eV$ um subconjunto. Então $\eW$ é um subespaço de $\eV$ se e somente se satisfaz as seguintes propriedades:
+	\begin{enumerate}[label=(\alph*)]
+		\item $0 \in \eW$
+		\item se $v_1, v_2 \in \eW$ então $v_1 + v_2 \in \eW$
+		\item se $\lambda \in \eK$ e $v \in \eW$ então $\lambda v \in \eW$
+	\end{enumerate}
+\end{proposition}
+
+\begin{proposition}
+	Sejam $\eV$ um espaço vetorial e $\eW_1$ e $\eW_2$ dois subespaços vetoriais de $\eV$, ambos de dimensão finita. Então:
+	\[
+		dim_{\eK}(\eW_1 + \eW_2) = dim_{\eK}\,\eW_1 + dim_{\eK}\,\eW_2 - dim_{\eK}(\eW_1 \cap \eW_2)
+	\]
+\end{proposition}
+
+\begin{definition}[Soma de subespaços vetoriais]
+	Sejam $\eV$ um espaço vetorial não nulo sobre $\eK$, $\eW_1$ e $\eW_2$ dois subespaços de $\eV$. Chama-se de soma de subespaços vetoriais $\eW_1$ e $\eW_2$, denotado por, $\eW_1 + \eW_2$ definido por  $\eW_1 + \eW_2 := \{ v_1 + v_2 : v_1 \in \eW_1 \land v_2 \in \eW_2 \}$.
+\end{definition}
+
+\begin{lemma} 
+	Sejam $\eV$ um espaço vetorial não nulo sobre $\eK$, $\eW_1$ e $\eW_2$ dois subespaços de $\eV$. $\eW_1 + \eW_2$ e $\eW_1 \cap \eW_2$ são subespaços de $\eV$.
+\end{lemma}
+
+\begin{attention} 
+	Em geral $\eW_1 \cup \eW_2$ não é subespaço de $\eV$ (veja lema acima)
+\end{attention}
+
+
+
+
+%******************************************************************************
+% Método Prático de Complemento de Base
+%******************************************************************************
+\section{Método Prático de Complemento de Base}
+
+
+
+
+%******************************************************************************
+% Somas Diretas
+%******************************************************************************
+% 2016-07-16
+\section{Somas Diretas}
+
+\begin{definition}[Soma Direta]
+	Sejam dois $\eW_1$ e $\eW_2$ dois subespaços vetoriais de um espaço vetorial $\eV$. Diremos que soma $\eW_1 + \eW_2$ é direta se $\eW_1 \cap \eW_2 = \{ 0 \}$ e, neste caso, denotamos como $\eW_1 \oplus \eW_2$.
+\end{definition}
+
+\begin{definition}
+	Sejam $\eV$ um espaço vetorial sobre um corpo $\eK$e sejam $\eW_1$ e $\eW_2$ dois subespaços de $\eV$.
+	Dizemos que $\eV$ é a soma direta de $\eW_1$ e $\eW_2$ se $\eV = \eW_1 \oplus \eW_2$.
+\end{definition}
+
+\begin{proposition}
+	Seja $\eV$ um $\eK$-espaço vetorial e $\eW_1$ e $\eW_2$ dois subespaços de $\eV$. Então, $\eV = \eW_1 \oplus \eW_2$ se e só se cada elemento de $v \in \eV$ se escreve de maneira única como uma soma $x_1 + x_2$ com $x_1 \in \eW_1$ e $x_2 \in \eW_2$.
+\end{proposition}
+
+\begin{proposition}[Complemento de um subespaço]
+	Sejam $\eV$ um espaço vetorial finitamente gerado e não nulo e $\eW_1$ um subespaço de $\eV$. Então existe um subespaço $\eW_2$ de $\eV$ tal que $\eV = \eW_1 \oplus \eW_2$.
+\end{proposition}
+
+
+
+
+\section{Espaço Quociente}
+
+
+
+
+\section{Apêndice}
+
+
+
+
+%&&&******************************************************************************
+%&&&******************************************************************************
+%&&& 3. Transformações Lineares
+%&&&******************************************************************************
+%&&&******************************************************************************
+% A 2016-07-16
+\chapter{Transformações Lineares}
+
+
+
+
+%******************************************************************************
+% Conceitos Básicos
+%******************************************************************************
+% A: 2016-07-16
+\section{Conceitos Básicos}
+% A: 2016-07-16
+\begin{definition}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$. Uma função $\fT : \eU \rightarrow \eV$ é uma transformação linear se
+	\begin{enumerate}
+		\item $\fT(u_1 + u_2) = \fT(u_1) + \fT(u_2), \, \forall u_1, u_2 \in \eU$
+		\item $\fT(\lambda u) = \lambda \fT(u), \, \forall \lambda \in \eK$ e $\forall u \in \eU$
+	\end{enumerate}
+\end{definition}
+
+% A: 2016-07-16
+\begin{lemma}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$. Uma função $\fT : \eU \rightarrow \eV$ é uma transformação linear se e somente se
+	\[
+		\fT(\lambda u_1 + u_2) = \lambda \fT(u_1) + \fT(u_2), \, \forall u_1, u_2 \in \eU, \, \forall \lambda \in \eK
+	\]
+\end{lemma}
+
+% A: 2016-07-16
+\begin{lemma}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$. Uma função $\fT : \eU \rightarrow \eV$ é uma transformação linear. Então:
+	\begin{enumerate}
+		\item $\fT(0_{\eU}) = 0_{\eV}$, onde $0_{\eU}$ e $0_{\eV}$ denotam vetores nulos em $\eU$ e $\eV$, respectivamente.
+		\item $\fT(-u) = -\fT(u), \, \forall u \in \eU$
+		\item $\displaystyle \fT\left(\sum_{i = 1}^{m} \alpha_i u_i\right) = \sum_{i = 1}^{m} \alpha_i \fT(u_i),$ onde $\alpha_i \in \eK$ e $u_i \in \eU$, para $i = 1, \dots, m$.
+	\end{enumerate}
+\end{lemma}
+
+% A: 2016-07-16
+\begin{theorem}
+	Sejam $\eU$ e $\eV$ dois espaços vetoriais sobre um corpo $\eK$. Se $\{ u_1, \dots, u_n\}$ for uma base de $\eU$ e se $\{ v_1, \dots, v_n \} \subseteq \eV$, então exite uma única transformação linear $\fT : \eU \rightarrow \eV$ tal que $\fT(u_i) = v_i$, para cada $i = 1, \dots, n $.
+\end{theorem}
+
+
+
+
+%******************************************************************************
+% O Núcleo e a Imagem de uma Transformação Linear
+%******************************************************************************
+% A: 2016-07-16
+\section{O Núcleo e a Imagem de uma Transformação Linear}
+% A: 2016-07-16
+\begin{definition}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$ e $\fT : \eU \rightarrow \eV$ uma transformação linear. 
+	\begin{enumerate}
+		\item O conjunto $\{ u \in \eU : \fT(u) = 0 \}$ é chamado de núcleo de $\fT$ e denotado por $\Nuc \fT$ ou $\Ker \fT$
+		\item O conjunto $\{ v \in \eV : \exists u \in \eU \text{ com } \fT(u) = 0 \}$ é chamado de imagem de $\fT$ e denotado por $\Im \fT$.
+	\end{enumerate}
+\end{definition}
+
+% A: 2016-07-16
+\begin{proposition}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$. e $\fT : \eU \rightarrow \eV$ uma transformação linear. Então:
+	\begin{enumerate}
+		\item $\Nuc \fT$ é um subespaço vetorial de $\eU$ e $\Im \fT$ é um subespaço vetorial de $\eV$.
+		\item $\fT$ é injetora se e somente se $\Nuc \fT = \{ 0 \}$.
+	\end{enumerate}
+\end{proposition}
+
+% A: 2016-07-16
+\begin{definition}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$. e $\fT : \eU \rightarrow \eV$ uma transformação linear. 
+	\begin{enumerate}
+		\item A $\dim \Nuc \fT$ é chamado de nulidade de $\fT$.
+		\item A $\dim \Im \fT$ é chamado de posto de $\fT$.
+	\end{enumerate}
+\end{definition}
+
+% A: 2016-07-16
+\begin{lemma}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$. Uma função $\fT : \eU \rightarrow \eV$ é uma transformação linear. Se $\bB = \{ u_1, \dots, u_n \}$ é uma base de $\eU$, então $\{ \fT(u_1), \dots, \fT(u_n) \}$ gera $\Im \fT$.
+\end{lemma}
+
+
+
+
+%******************************************************************************
+% Isomorfismo
+%******************************************************************************
+% A: 2016-07-17
+\section{Isomorfismo}
+% A: 2016-07-17
+\begin{definition}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$. 
+	\begin{enumerate}
+		\item Seja $\fT : \eU \rightarrow \eV$ uma transformação linear. Se $\fT$ for bijetora (isto é, injetora e sobrejetora) então dizemos que ela é um isomorfismo.
+		\item Se existir um isomorfismo $\fT : \eU \rightarrow \eV$, então que $\eU$ e $\eV$ são espaço vetorial isomorfos e indicaremos por $\eU \cong \eV$.
+	\end{enumerate}
+\end{definition}
+
+% A: 2016-07-17
+\begin{definition}
+	Sejam $\fF : \eU \rightarrow \eV$ uma função bijetora. Chama-se função inversa de $\fF$ uma transformação linear $\fG : \eV \rightarrow \eU$ tal que $\fF \circ \fG = \Id_{\eV}$ e $\fG \circ \fF = \Id_{\eU}$. Denotamos a inversa de $\fF : \eU \rightarrow \eV$ como $\fF^{-1} : \eV \rightarrow \eU$.
+\end{definition}
+
+% A: 2016-07-17
+\begin{proposition}
+	A inversa de uma transformação linear bijetora é também linear.
+\end{proposition}
+
+% A: 2016-07-17
+\begin{proposition}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$ de mesma dimensão finita $n \geq 1$ e $\fT : \eU \rightarrow \eV$ uma transformação linear. Então as seguintes afirmações são equivalentes:
+	\begin{enumerate}
+		\item $\fT$ é um isomorfismo.
+		\item $\fT$ é injetora.
+		\item $\fT$ é sobrejetora.
+	\end{enumerate}
+\end{proposition}
+
+% A: 2016-07-17
+\begin{theorem}
+	Dois espaços vetoriais de mesma dimensão finita são isomorfos.
+\end{theorem}
+
+% A: 2016-07-17
+\begin{corollary}
+	Todo $\eK$-espaço vetorial de dimensão $n \geq 1$ é isomorfo a $\eK^n$.
+\end{corollary}
+
+
+
+
+%******************************************************************************
+% Matrizes de Transformações
+%******************************************************************************
+% A: 2016-07-17
+\section{Matrizes de Transformações}
+% A: 2016-07-17
+\begin{definition}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$ de dimensões $n$ e $m$ respectivamente. e $\fT : \eU \rightarrow \eV$ uma transformação linear. Sejam $\bB = \{ u_1, \dots, u_n \}$ e $\bB' = \{ v_1, \dots, v_m \}$ uma base de $\eU$ e $\eV$ respectivamente. \\
+	Para cada $\fT(u_j)$ existem $a_{ij} \in \eK$ tais que:
+	\[
+		\left\{\begin{array}{cccccccccccc}
+			\fT(u_1) &=& a_{11} v_1 &+& a_{21} v_1 &+& \dots  &+& a_{m1} v_m &=& \displaystyle\sum_{i = 1}^{m} a_{i1} v_i\\
+			\fT(u_2) &=& a_{12} v_1 &+& a_{22} v_1 &+& \dots  &+& a_{m2} v_m &=& \displaystyle\sum_{i = 1}^{m} a_{i2} v_i\\
+			\vdots & & \vdots     & & \vdots     & & \vdots & & \vdots     & & \vdots                     \\
+			\fT(u_n) &=& a_{1n} v_1 &+& a_{2n} v_1 &+& \dots  &+& a_{mn} v_m &=& \displaystyle\sum_{i = 1}^{m} a_{in} v_i
+		\end{array}\right.
+	\]
+	Dado um $u = \alpha_1 u_1 + \dots + \alpha_n u_n \in \eU$ onde $\alpha_i \in \eK$, para $i = 1, \dots, m$. Temos:
+	\begin{flalign*}
+		\fT(u) &= \fT\left( \sum_{j = 1}^{n} \alpha_j u_j\right) 
+		= \sum_{j = 1}^{n} \fT\left( \alpha_j u_j \right) 
+		= \sum_{j = 1}^{n} \left( \sum_{i = 1}^{m} \alpha_j a_{ij} v_i \right) 
+		=  \sum_{i = 1}^{m} \left(\sum_{j = 1}^{n} \alpha_j a_{ij} \right) v_i
+		= &\\
+		&= \displaystyle \sum_{i = 1}^{m} \beta_i v_i, \text{ onde } \beta_i = \sum_{j = 1}^{n} \alpha_j a_{ij}, \text{ para } i = 1, \dots, m &\\
+		&\Leftrightarrow &\\
+		[\fT(u)]_{\bB'} &= (\beta_1, \dots, \beta_m)_{\bB'}, \text{ para } i = 1, \dots, m &\\&
+	\end{flalign*}
+	Podemos escrever $[\fT(u)]_{\bB'}$ como produto de matrizes, $v = Au$, onde:
+	\[
+		A = 
+		\left[\begin{array}{ccccc}
+			a_{11} & a_{12} & a_{13} & \dots  & a_{1n} \\
+			a_{21} & a_{22} & a_{23} & \dots  & a_{2n} \\
+			a_{31} & a_{32} & a_{33} & \dots  & a_{3n} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			a_{m1} & a_{m2} & a_{m3} & \dots  & a_{mn} 
+		\end{array}\right]_{\bB, \bB'}
+	\]
+	ou seja:
+	\[
+		\left[\begin{array}{c}
+			\beta_1 \\
+			\beta_2 \\
+			\beta_3 \\
+			\vdots \\
+			\beta_m
+		\end{array}\right]_{\bB'}
+		= Au = 
+		\left[\begin{array}{ccccc}
+			a_{11} & a_{12} & a_{13} & \dots  & a_{1n} \\
+			a_{21} & a_{22} & a_{23} & \dots  & a_{2n} \\
+			a_{31} & a_{32} & a_{33} & \dots  & a_{3n} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			a_{m1} & a_{m2} & a_{m3} & \dots  & a_{mn} 
+		\end{array}\right]_{\bB, \bB'}
+		\left[\begin{array}{c}
+			\alpha_1 \\
+			\alpha_2 \\
+			\alpha_3 \\
+			\vdots \\
+			\alpha_n
+		\end{array}\right]_{\bB}
+	\]
+	\begin{enumerate}
+		\item A matriz $A = (a_{ij}) \in \fcM_{m \times n}(\eK)$ é chamada de matriz de transformação linear $\fT$ com relação às bases $\bB$ e $\bB'$ e é denotada por $[\fT]_{\bB, \bB'}$
+		\item Se $\bB = \bB'$, denotamos: $[\fT]_{\bB}$
+	\end{enumerate}
+	%$[\fT]_{\bB, \bB'}$ ou $[\fT]_{\bB \rightarrow \bB'}$ ou $[\fT]_{\bB'}^{\bB}$
+\end{definition}
+
+\begin{proposition}
+	Sejam $\eV$ e $\eW$ dois espaços vetoriais sobre $\eK$ com dimensões $n$ e $m$, respectivamente. Dadas bases $\bB$ e $\bC$ de $\eV$ e $\eW$, respectivamente e uma matriz em $\fcM_{m \times n}(\eK)$, então existe uma única transformação linear $\fT: \eV \rightarrow \eW$ tal que $[\fT]_{\bB, \bC} = M$.
+\end{proposition}
+
+\begin{theorem}
+	Sejam $\fF : \eU \rightarrow \eV$ e $\fG : \eV \rightarrow \eW$ duas transformações lineares onde $\eU$, $\eV$ e $\eW$ são espaços vetoriais sde dimensões $n$, $m$ e $r$, respectivamente. Fixe bases $\bB$, $\bB'$ e $\bB''$ para $\eU$, $\eV$ e $\eW$, respectivamente. Então:
+	\[
+		[\fG \circ \fF]_{\bB, \bB''} = [\fG]_{\bB', \bB''} [\fF]_{\bB, \bB'}
+	\]
+\end{theorem}
+
+\begin{corollary}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$ de dimensões $n \geq 1$ e considere bases $\bB$ e $\bB'$ de $\eU$ e $\eV$, respectivamente. Uma transformação linear $\fT : \eU \rightarrow \eV$ é um isomorfismo se e somente se a matriz $[\fT]_{\bB, \bB'}$ for invertível. Além disso, neste caso, $[\fTi]_{\bB, \bB'} = ([\fT]_{\bB, \bB'})^{-1}$.
+\end{corollary}
+
+% A: 2016-07-17
+\begin{definition}
+	Seja $\eU$ espaço vetorial sobre um corpo $\eK$ de dimensões $n \geq 1$ e sejam $\bB = \{ u_1, \dots, u_n \}$ e $\bB' = \{ v_1, \dots, v_m \}$ duas bases de $\eU$. Considere a matriz $M = (a_{ij})_{i,j} = [\Id]_{\bB, \bB'}$, isto é, a matriz dada pelos coeficientes \\
+	Para cada $\fT(u_j)$ existem $a_{ij} \in \eK$ tais que:
+	\[
+		\left\{\begin{array}{cccccccccccc}
+			u_1 &=& a_{11} v_1 &+& a_{21} v_1 &+& \dots  &+& a_{n1} v_n &=& \displaystyle\sum_{i = 1}^{n} a_{i1} v_i\\
+			u_2 &=& a_{12} v_1 &+& a_{22} v_1 &+& \dots  &+& a_{n2} v_n &=& \displaystyle\sum_{i = 1}^{n} a_{i2} v_i\\
+			\vdots & & \vdots     & & \vdots     & & \vdots & & \vdots     & & \vdots                     \\
+			u_n &=& a_{1n} v_1 &+& a_{2n} v_1 &+& \dots  &+& a_{mn} v_n &=& \displaystyle\sum_{i = 1}^{n} a_{in} v_n
+		\end{array}\right.
+	\]
+	Com isso, se $u = \in \eU$ e escrevendo $v = (\alpha_1, \dots, \alpha_n)_{\bB} = (\beta_1, \dots, \beta_n)_{\bB'}$, teremos:
+	\[
+		\left[\begin{array}{c}
+			\beta_1 \\
+			\beta_2 \\
+			\beta_3 \\
+			\vdots \\
+			\beta_m
+		\end{array}\right]_{\bB'}
+		= Au = 
+		\left[\begin{array}{ccccc}
+			a_{11} & a_{12} & a_{13} & \dots  & a_{1n} \\
+			a_{21} & a_{22} & a_{23} & \dots  & a_{2n} \\
+			a_{31} & a_{32} & a_{33} & \dots  & a_{3n} \\
+			\vdots & \vdots & \vdots & \ddots & \vdots \\
+			a_{n1} & a_{n2} & a_{n3} & \dots  & a_{nn} 
+		\end{array}\right]_{\bB, \bB'}
+		\left[\begin{array}{c}
+			\alpha_1 \\
+			\alpha_2 \\
+			\alpha_3 \\
+			\vdots \\
+			\alpha_m
+		\end{array}\right]_{\bB}
+	\]
+	isto é, a multiplicação de $M$ pelas coordenadas de $v$ na base $\bB$ fornece-nos as coordenadas de $v$ na base $\bB'$.\\
+	A matriz $M$ é chamada de matriz de mudança de base $\bB$ e $\bB'$.
+\end{definition}
+
+% A: 2016-07-17
+\begin{lemma}
+	A matriz de mudança de base é sempre invertível.
+\end{lemma}
+
+% A: 2016-07-17
+\begin{lemma}
+	Seja $\eU$ espaço vetorial sobre um corpo $\eK$ de dimensões $n \geq 1$ e sejam $\bB$ e $\bB'$ duas bases de $\eU$. Se $M$ é a matriz de mudança de base de $\bB$ para $\bB'$. Então $M^{-1}$ é a matriz de mudança de base de $\bB'$ para $\bB$.
+\end{lemma}
+
+% A: 2016-07-17
+\begin{lemma}
+	Seja $\eU$ espaço vetorial sobre um corpo $\eK$ de dimensões $n \geq 1$, sejam $\bB$ e $\bB'$ duas bases de $\eU$ e seja $\fT : \eU \rightarrow \eU$ uma transformação linear. Se $P$ é a matriz de mudança de base de $\bB$ para $\bB'$. então:
+	\[
+		[T]_{\bB} = P^{-1}[T]_{\bB'}P
+	\]
+\end{lemma}
+
+% A: 2016-07-17
+\begin{definition}[Semelhança de matrizes]
+	Duas matrizes $M$ e $N$ são ditas semelhantes se existir uma matriz invertível $P$ tal que $M = P^{-1}NP$.
+\end{definition}
+
+
+
+
+%******************************************************************************
+% O Espaço $\fc(\eU, \eV)$
+%******************************************************************************
+% A: 2016-07-17
+\section{O Espaço $\fcL(\eU, \eV)$}
+
+% A: 2016-07-17
+\begin{definition}
+	Sejam $\eU$ e $\eV$ dois espaços vetoriais sobre um corpo $\eK$, denotamos por $\fcL(\eU, \eV)$ o conjunto de todas as transformações lineares de $\eU$ a $\eV$.
+\end{definition}
+
+% A: 2016-07-17
+\begin{theorem}
+	Sejam $\eU$ e $\eV$ dois espaços vetoriais sobre um corpo $\eK$ com dimensões $n$ e $m$, respectivamente. Então o espaço $\fcL(\eU, \eV)$ tem dimensão $m \times n$.
+\end{theorem}
+
+% A: 2016-07-17
+\begin{corollary}
+	Sejam $\eU$ e $\eV$ dois espaços vetoriais sobre um corpo $\eK$ com dimensões $n$ e $m$, respectivamente. Então $\fcL(\eU, \eV)$ é um isomorfismo a $\fcM_{m \times n}(\eK)$.
+\end{corollary}
+
+% A: 2016-07-17
+\begin{definition}
+	Seja $\eU$ um espaço vetorial sobre um corpo $\eK$ um operador linear é uma transformação linear $\fT : \eU \rightarrow \eU$.
+\end{definition}
+
+% A: 2016-07-17
+\begin{definition}[Potência]
+	Seja $\eU$ um espaço vetorial sobre um corpo $\eK$. Seja $\fT : \eU \rightarrow \eU$ um operador linear.
+	\begin{enumerate}
+		\item $\fT^0 = \Id$
+		\item $\fT^n = \underbrace{\fT \circ \dots \circ \fT}_{n}$
+	\end{enumerate}
+\end{definition}
+
+% A: 2016-07-17
+\begin{definition}[Projeção]
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$ e $\eW \subseteq \eV$ um subespaço. Um operador linear $\pi : \eV \rightarrow \eV$ é chamado de projeção sobre $\eW$ se:
+	\begin{enumerate}
+		\item $\Im (\pi) = \eW$
+		\item $\pi(w) = w, \, \forall w \in \eW$
+	\end{enumerate}
+\end{definition}
+
+% A: 2016-07-17
+\begin{proposition}
+	Seja $\pi : \eV \rightarrow \eV$ um operador linear e escreva $\eV = \eW_1 + \eW_2$ onde $\eW_1 = \Im \pi$ e $\eW_2 = \Im (\Id - \pi)$. As seguintes afirmações são equivalentes:
+	\begin{enumerate}
+		\item $\pi$ é uma projeção de $\eW_1$.
+		\item $\pi^2 = \pi$
+		\item A soma $\eW_1 + \eW_2$ é direta, isto é, $\eW_1 \cap \eW_2 = \{ 0 \}$.
+	\end{enumerate}
+\end{proposition}
+
+% A: 2016-07-17
+\begin{corollary}
+	Seja $\pi : \eV \rightarrow \eV$ uma projeção sobre $\Im \pi$ então o subespaço $\Im (\Id - \pi)$ é o núcleo de $\pi$.
+\end{corollary}
+
+% A: 2016-07-17
+\begin{theorem}
+	Seja $\eV = \eW_1 \oplus \dots \oplus \eW_r$ espaços vetoriais sobre um corpo $\eK$. Então existem operadores lineares $\pi_1, \dots, \pi_r$ sobre $\eV$ tais que:
+	\begin{enumerate}
+		\item $\pi_i(v) = w_i$, para cada $v = w_1 + \dots + w_r$, com $w_i \in \eW_i$, para $i = 1, \dots, r$.
+		\item $\pi_i \circ \pi_j = 0$, se $i \neq j$ e $\pi_i ^ 2 = \pi_i$, para  $i = 1, \dots, r$.
+		\item $\Id = \pi_1 + \dots + \pi_r$
+		\item $\Im \pi_i = \eW_i$, para cada $i = 1, \dots, r$.
+	\end{enumerate}
+	Reciprocamente, se $\pi_1, \dots, \pi_r$ são operadores lineares sobre $\eV$ que satisfazem (i), (ii) e (iii) e se $\eV_i = \Im \pi_i$, então $\eV = \eV_1 \oplus \dots \oplus \eV_r$.
+\end{theorem}
+
+
+
+
+%&&&******************************************************************************
+%&&&******************************************************************************
+%&&& 4. Funcionais Lineares
+%&&&******************************************************************************
+%&&&******************************************************************************
+\chapter{Funcionais Lineares}
+
+
+
+
+%******************************************************************************
+% Espaço Dual
+%******************************************************************************
+% A: 2016-07-17
+\section{Espaço Dual}
+
+\begin{definition}[Funcional Linear]
+	Seja $\eV$ um $\eK$-espaço vetorial. Um funcional linear em $\eV$ é um transformação linear $f :\eV \rightarrow \eK$. 
+\end{definition}
+
+\begin{definition}[Espaço Dual]
+	Seja $\eV$ um $\eK$-espaço vetorial e $f :\eV \rightarrow \eK$  um funcional linear não nulo.  O conjunto $\fcL(\eV, \eK)$ dos funcionais lineares é chamado de espaço dual e denotado por $\eV ^ *$.
+\end{definition}
+
+\begin{definition}[Funcional Linear]
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$ de dimensão finita e seja $\bB = \{ v_1, \dots, v_n \}$ uma base de $\eV$. Seja $\ff_i : \eV \rightarrow \eK$, para cada $i = 1, \dots, n$ um funcional linear, tal que:
+	\[
+		\ff_i(v_j) = \delta_{ij} = \left\{
+		\begin{array}{lll}
+			0, &\text{ se } & i \neq j\\
+			1, &\text{ se } & i = j\\
+		\end{array} \right.
+	\]
+	Seja $v = \displaystyle\sum_{j = 1}^{n} \alpha_j v_j$, com $\alpha_1, \dots, \alpha_n \in \eK$, temos:
+	\[
+		\ff_i(v) = \ff_i \left(\sum_{j = 1}^{n} \alpha_j v_j\right) = \sum_{j = 1}^{n} \alpha_j \ff_i(v_j)
+		\sum_{j = 1}^{n} \alpha_j \delta_{ij}
+	\]
+	isto é, $\alpha_i = \ff_i(v)$, Logo:
+	\[
+		v = \displaystyle\sum_{j = 1}^{n} \ff_j(v) v_j
+	\]
+	Chama-se de base dual de $\eV ^ *$, denotado por, $\bB ^ *$, é base de $\eV ^ *$ relacionada com $\bB$ tal que $\bB ^ * = \{ \ff_1, \dots, \ff_n \}$
+\end{definition}
+
+\begin{theorem}
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$ de dimensão finita e seja $\bB = \{ v_1, \dots, v_n \}$ uma base de $\eV$. Então existe uma única base $\bB ^ * = \{ \ff_1, \dots, \ff_n \}$ de $\eV ^ *$ tal que $\ff_i(v_j) = \delta_{ij}$, para $i,j = 1, \dots, n$. Além disso, para cada $v \in \eV$, temos:
+	\[
+		v = \displaystyle\sum_{i = 1}^{n} \ff_i(v) v_i
+	\]
+	e para cada $f \in \eV ^ *$ temos
+	\[
+		f = \displaystyle\sum_{i = 1}^{n} \ff(v_i) \ff_i
+	\]
+\end{theorem}
+
+
+
+
+%******************************************************************************
+% Espaço Bidual
+%******************************************************************************
+% A: 2016-07-17
+\section{Espaço Bidual}
+
+% A: 2016-07-17
+\begin{definition}[Espaço Bidual]
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$. Chamamos de o espaço $(\eV ^ *) ^ *$ de espaço bidual de $\eV$ e denotaremos por $\eV^{**}$. Ou seja $\eV^{**} = \{ \phi \in \eV^{**} | \phi : \eV ^ * \rightarrow \eK \}$.
+\end{definition}
+
+\begin{remark}
+	Sejam $\eV$ um espaço vetorial sobre um corpo $\eK$ e $v \in \eV$.	
+	Denota-se $\phi_v$, um elemento $\phi_v \in \eV ^ {**}$ tal que: 
+	\[
+		\begin{array}{llll}
+			\phi_v: & \eV ^ * &\rightarrow & \eK             \\
+			        & f       &\mapsto     & \phi_v(f) = \ff(v)
+		\end{array}
+	\]
+\end{remark}
+
+% A: 2016-07-17
+\begin{lemma}
+	A função $\Phi : \eV \rightarrow \eV^{**}$ dada por $\Phi(v) = \phi_v$ é linear e injetora.
+\end{lemma}
+
+% A: 2016-07-17
+\begin{corollary}
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$. Então toda base de $\eV ^ *$ é a dual de alguma base de $\eV$.
+\end{corollary}
+
+
+
+
+%******************************************************************************
+% Hiperplanos
+%******************************************************************************
+% A: 2016-07-17
+\section{Hiperplanos}
+
+% A: 2016-07-17
+\begin{definition}[Hiperplano]
+	Seja $\eV$ um espaço vetorial não nulo. Um hiperplano em $\eV$ é um subespaço próprio $\eW$ tal que se $\eW'$ for um subespaço de $\eV$ satisfazendo $\eW \subseteq \eW' \subseteq \eV$, então $\eW = \eW'$ ou $\eW' = \eV$.
+\end{definition}
+
+% A: 2016-07-17
+\begin{proposition}
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$ de dimensão $n \geq 1$ e $\eV$ é um subespaço próprio de $\eV$ então $\eW$ é um hiperplano de $\eV$ se e somente se $\dim_{\eK} = n - 1$.
+\end{proposition}
+
+% A: 2016-07-17
+\begin{theorem}
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$ não nulo. Se $f \in \eV ^ *$ é um funcional linear não nulo, então $\Nuc f$ é um hiperplano de $\eV$. Inversamente, existe um funcional linear não nulo  $f \in \eV ^ *$ tal que $H = \Nuc f$, onde $\eH$ é um hiperplano de $\eV$.
+\end{theorem}
+
+% A: 2016-07-17
+\begin{definition}[Hiperplano Afim]
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$ e seja $\eH$ um hiperplano de $\eV$. Para um vetor $\vDash_0 \in \eV$ o conjunto 
+	\[
+		v_0 + \eH = \{ v_0 + v | v \in \eH \}
+	\]
+	é chamado de Hiperplano Afim de $\eV$
+\end{definition}
+
+
+
+
+%******************************************************************************
+% Anuladores
+%******************************************************************************
+% A: 2016-07-17
+\section{Anuladores}
+
+% A: 2016-07-17
+\begin{definition}
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$ e seja $\eS \subseteq \eV$ um subconjunto de $\eV$. Chamamos de anulador de $\eS$ ao subconjunto $\eS ^ 0$ dos funcionais lineares de $\eV ^ *$ que se anulam nos vetores de $\eS$, isto é, 
+	\[
+		\eS ^ 0 = \{ f \in \eV ^ * : \ff(u) = 0, \, \forall u \in \eS \}.
+	\]
+\end{definition}
+
+% A: 2016-07-17
+\begin{lemma}
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$ e seja $\eS \subseteq \eV$ um subconjunto de $\eV$. Então $\eS ^ 0$ é um subespaço de $\eV ^ *$.
+\end{lemma}
+
+% A: 2016-07-17
+\begin{lemma}
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$ e seja $\eS \subseteq \eV$ um subconjunto de $\eV$. Se $\eS = \{ 0 \}$, então $\eS ^ 0 = \{ f \in \eV ^ * | \ff(u) = 0, \, \forall u \in \eS \} = \eV ^ *$.
+\end{lemma}
+
+% A: 2016-07-17
+\begin{lemma}
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$ e seja $\eS \subseteq \eV$ um subconjunto de $\eV$. Se $\eS = V$, então $\eS ^ 0 = \{ 0 \}$.
+\end{lemma}
+
+% A: 2016-07-17
+\begin{theorem}
+	Seja $\eV$ um espaço vetorial sobre um corpo $\eK$ de dimensão finita e seja $\eW \subseteq \eV$ um subespaço de $\eV$. Então
+	\[
+		\dim_{\eK} \eV = \dim_{\eK} \eW + \dim_{\eK} \eW ^ 0
+	\]
+\end{theorem}
+
+% A: 2016-07-17
+\begin{theorem}
+	Seja $\eU$ um espaço vetorial sobre um corpo $\eK$. Se $\eU = \eV \oplus \eW$, então $\eU ^ * = \eV ^ 0 \oplus \eW ^ 0$, $\eV  ^ *$ é isomorfismo a $\eW ^ 0$ e $\eW  ^ *$ é isomorfismo a $\eV ^ 0$.
+\end{theorem}
+
+
+
+
+%******************************************************************************
+% Transpostas de Transformações
+%******************************************************************************
+% A: 2016-07-17
+\section{Transpostas de Transformações}
+
+% A: 2016-07-17
+\begin{theorem}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$ e $\fT : \eU \rightarrow \eV$ uma transformação linear $\fT ^ t : \eV ^ * \rightarrow \eU ^ *$ dada por $\fT ^ t(g)(u) = \fg(\fT(u))$ para todo $g \in \eV ^ *$ e para todo $u \in \eU ^ *$.
+\end{theorem}
+
+% A: 2016-07-17
+\begin{definition}
+	A transformação linear $\fT ^ t$ definida acima é chamada transposta de $\fT$.
+\end{definition}
+
+% A: 2016-07-17
+\begin{theorem}
+	Sejam $\eU$ e $\eV$ espaços vetoriais sobre um corpo $\eK$ e $\fT \in \fcL(\eU, \eV)$. Então:
+	\begin{enumerate}
+		\item $\Nuc \fT ^ t = (\Im \fT) ^ 0$.
+	\end{enumerate}
+	Se as dimensões de $\eU$ e $\eV$ forem finitas
+	\begin{enumerate}
+		\item $\dim \Im \fT ^ t = \dim \Im \fT$, ou seja, $\text{posto } \fT ^ t = \text{posto }\fT$
+		\item $\Im \fT ^ t = (\Nuc \fT) ^ 0$
+	\end{enumerate}
+\end{theorem}
+
+% A: 2016-07-17
+\begin{theorem}
+	Sejam $\eV$ e $\eW$ espaços vetoriais sobre um corpo $\eK$, ambos de dimensão finita. Sejam $\bB$ uma base de $\eV$, $\bB ^ *$ a base dual de $\bB$, $\bC$ uma base de $\eW$ e $\bC ^ *$ uma base de $\bC$. Se $\fT$ é uma transformação linear de $\eV$ em $\eW$, então a transposta da matriz $\fT$ com relação às bases $\bB$ e $\bC$ é igual à matriz da transposta de $\fT$ com relação às bases $\bC ^ *$ e $\bB ^ *$, isto é:
+	\[
+		[\fT]_{\bB, \bC} ^ t = [\fTt]_{\bB ^ *, \bC ^ *}
+	\]
+\end{theorem}
+
+% A: 2016-07-17
+\begin{corollary}
+	Seja $A = (a_{ij})_{i,j} \in \fcM_{m \times n}(\eK)$. Então o posto-linha de $A$ é igual ao posto-coluna de $A$.
+\end{corollary}
+
+
+
+
+%&&&******************************************************************************
+%&&&******************************************************************************
+%&&& 5. Formas Canônicas
+%&&&******************************************************************************
+%&&&******************************************************************************
+\chapter{Formas Canônicas}
+
+
+
+
+%******************************************************************************
+% Operadores Diagonalizáveis
+%******************************************************************************
+% A: 2016-07-18
+\section{Operadores Diagonalizáveis}
+
+% A: 2016-07-18
+Ao longo do resumo, $\eK$ é um corpo qualquer, $\eV$ um espaço vetorial sobre um corpo $\eK$, $\fT : \eV \rightarrow \eV$ um operador linear e $\Id : \eV \rightarrow \eV$ é a transformação identidade em $\eV$.
+
+% A: 2016-07-18
+\begin{definition}
+	Seja $\fT : \eV \rightarrow \eV$ um operador linear e suponha que exista uma base $\bB = \{ v_1, \dots, v_n \}$ de $\eV$ tal que a matriz $[T]_{\bB}$ tenha a forma diagonal. isto é, tal que:
+	\[
+		[T]_{\bB} = \left(\begin{array}{ccccc}
+			\lambda_1 &         0 &         0 & \dots  &         0 \\
+			        0 & \lambda_2 &         0 & \dots  &         0 \\
+			        0 &         0 & \lambda_3 & \dots  &         0 \\
+			   \vdots &    \vdots &    \vdots & \ddots &    \vdots \\
+			        0 &         0 &         0 & \dots  & \lambda_n 
+		\end{array}\right)
+	\]
+	com $\lambda_i \in \eK$ para $i = 1, \dots, n$, isto é, a imagem de qualquer vetor da base $\bB$ por $\fT$ é um múltiplo deste vetor.
+	\begin{enumerate}
+		\item Um autovalor de $\fT$ é um elemento $\lambda \in \eK$ tal que existe um vetor não nulo $v \in \eV$ com $\fT(v) = \lambda v$.
+		\item Se $\lambda$ é um autovalor de $\fT$, então todo vetor não nulo de $v \in \eV$ tal que $\fT(v) = \lambda v$ é chamado de autovetor de $\fT$ associado a $\lambda$. Denotaremos por $Aut_{\fT}(\lambda)$ o subespaço de $\eV$ gerado por todos os vetores associados a $\lambda$.
+		\item Suponha que $\dim_{\eK} = n < \infty$. Dizemos que $\fT$ é diagonalizável se existir uma base $\bB$ tal que $[\fT]_{\bB}$ é diagonal por autovalores de $\fT$.
+	\end{enumerate}
+\end{definition}
+
+% A: 2016-07-18
+\begin{lemma}
+	Seja $\fT : \eV \rightarrow \eV$ um operador linear não injetor. Então $0$ é um autovalor de $\fT$.
+\end{lemma}
+
+% A: 2016-07-18
+\begin{lemma}
+	Seja $\fT : \eV \rightarrow \eV $ um operador linear. Se $\lambda \in \eK$ for um autovalor de $\fT$, então existe $v \neq 0$ tal que $\fT(v) = \lambda v \Leftrightarrow (\lambda \Id - \fT)(v) = 0$ . Então as seguintes afirmações são verdadeiras:
+	\begin{enumerate}
+		\item $\lambda \text{ é autovalor de } \fT$
+		\item $\Nuc (\lambda \Id - \fT) \neq 0$
+		\item $(\lambda \Id - \fT)$ não é invertível
+		\item $\det [\lambda \Id - \fT] = 0$
+	\end{enumerate}
+	\[
+		 \Leftrightarrow 
+	\]
+\end{lemma}
+
+% A: 2016-07-18
+\begin{definition}[Polinômio característico]
+	Seja $\bC$ uma base de $\eV$. Chamamos o polinômio $\det [x.\Id - \fT]_{\bC}$ de polinômio característico de $\fT$ e denotado por $p_{\fT}(x)$.
+\end{definition}
+
+% A: 2016-07-18
+\begin{lemma}
+	O polinômio $\det [x.\Id - \fT]_{\bC}$ é um invariante de $\fT$, para qualquer base $\bC$ de $\eV$.
+\end{lemma}
+
+% A: 2016-07-18
+\begin{theorem}
+	Seja $\fT : \eV \rightarrow \eV $ um operador linear e sejam $\lambda_1, \dots, \lambda_t$, $t \geq 1$ autovalores $\fT$, dois a dois distintos.
+	\begin{enumerate}
+		\item Se $v_1 + \dots + v_t = 0$ com $v_i \in Aut_{\fT}(\lambda_i)$, $i = 1, \dots, t$, então $v_i = 0$, para cada $i$.
+		\item Para cada $i = 1, \dots, t$, seja $\bB_i$ um conjunto linearmente independente contido em $Aut_{\fT}(\lambda_i)$. Então $\bB_1 \cup \dots \cup \bB_t$ é linearmente independente.
+	\end{enumerate}
+\end{theorem}
+
+% A: 2016-07-18
+\begin{corollary}
+	Seja $\fT : \eV \rightarrow \eV $ um operador linear e sejam $\lambda_1, \dots, \lambda_t$, $t \geq 1$ autovalores $\fT$, então $\fT$ é diagonalizável se e somente se 
+	\[
+		\dim_{\eK} \eV = \sum_{i = 1}^{t} \dim_{\eK} Aut_{\fT}(\lambda_i)
+	\]
+\end{corollary}
+
+% A: 2016-07-18
+\begin{definition}[Multiplicidade algébrica e geométrica]
+	Seja $\lambda$ um autovalor de um operador linear $\fT : \eV \rightarrow \eV$ e suponhamos que $p_{\fT} = (x - \lambda)^m q(x)$, com $q(x) \neq 0$, seja o polinômio característico de $\fT$. O número $m$ é chamado de multiplicidade algébrica de $\lambda$ e denotamos por $ma(\lambda)$. Chamamos de multiplicidade geométrica de $\lambda$ à dimensão do subespaço $Aut_{\fT}(\lambda)$ e denotamos por $mg(\lambda)$
+\end{definition}
+
+% A: 2016-07-18
+\begin{proposition}
+	Seja $\lambda$ um autovalor de um operador linear $\fT : \eV \rightarrow \eV$ Então $mg(\lambda) \leq ma(\lambda)$.
+\end{proposition}
+
+% A: 2016-07-18
+\begin{theorem}
+	Seja $\fT : \eV \rightarrow \eV $ um operador linear e sejam $\lambda_1, \dots, \lambda_t$, $t \geq 1$ autovalores $\fT$, dois a dois distintos. As seguintes afirmações são equivalentes.
+	\begin{enumerate}
+		\item $\fT$ é diagonalizável
+		\item $p_{\fT} = (x - \lambda_1) ^ {n_1} \dots (x - \lambda_t) ^ {n_t}$, $n_i \geq 1$ e $mg(\lambda_i) = ma(\lambda_i)$, para cada $i = 1, \dots, t$.
+		\item $\dim_{\eK} \eV = \displaystyle\sum_{i = 1}^{t} \dim_{\eK} Aut_{\fT}(\lambda_i)$
+	\end{enumerate}
+\end{theorem}
+
+
+
+%******************************************************************************
+% Subespaços $\fT$-Invariantes
+%******************************************************************************
+% A: 2016-07-18
+\section{Subespaços $\fT$-Invariantes}
+
+% A: 2016-07-18
+\begin{definition}[Subespaço $\fT$-Invariante]
+	Seja $\fT : \eV \rightarrow \eV $ um operador linear e seja $\eW \subseteq \eV$ um subespaço de $\eV$. Dizemos que $\eW$ é um subespaço $\fT$-Invariante de $\eV$ se $\fT(w) \in \eW$ para todo $w \in \eW$.
+\end{definition}
+
+
+
+
+%******************************************************************************
+% Polinômios Minimais de Operadores e O Teorema de Cayley-Hamilton
+%******************************************************************************
+% A: 2016-07-18
+\section{Polinômios Minimais de Operadores e O Teorema de Cayley-Hamilton}
+
+% A: 2016-07-18
+\begin{definition}[Polinômio Minimal]
+	O polinômio minimal de um operador linear $\fT$ em $\fcL(\eV, \eV)$ é o polinômio mônico $m_{\fT}(x)$ de menor grau tal que $m_{\fT}(T)(v) = 0,\, \forall v \in \eV$.
+\end{definition}
+
+
+
+
+% A: 2016-07-18
+\begin{theorem}[Cayley-Hamilton]
+	Um operador $\fT \in \fcL(\eV, \eV)$ é um zero de seu polinômio característico $p_{\fT}(x)$, isto é, $p_{\fT}(T) = 0$.
+\end{theorem}
+
+
+
+% A: 2016-07-18
+\begin{proposition}
+	Sejam $\eV$ um $\eK$-espaço vetorial de dimensão $n \geq 1$ e $\fT \in \fcL(\eV, \eV)$. Então, os polinômios característico e minimal de $\fT$ têm as mesmas raízes a menos de multiplicidade.
+\end{proposition}
+
+
+
+
+%******************************************************************************
+% Espaços Vetoriais $\fT$-Cíclicos
+%******************************************************************************
+% A: 2016-07-18
+\section{Espaços Vetoriais $\fT$-Cíclicos}
+
+% A: 2016-07-18
+\begin{definition}
+	Sejam $\eV$ um $\eK$-espaço vetorial de dimensão $n \geq 1$ e $\fT \in \fcL(\eV, \eV)$. 
+	\begin{enumerate}
+		\item Dizemos que $v \in \eV$ é um vetor $\fT$-Cíclico se $\eV = C_{\fT}(v)$ ou equivalentemente, se $\{ v, \fT(v), \dots, \fT ^ {n - 1}(v)\}$ for uma base de $\eV$.
+		\item Dizemos que $\eV$ é $\fT$-Cíclico se $\eV$ possuir um vetor $\fT$-Cíclico.
+	\end{enumerate}
+\end{definition}
+
+% A: 2016-07-18
+\begin{definition}
+	Sejam $\eV = C_{\fT}(v)$ um espaço $\fT$-Cíclico de dimensão $n$,  $m_{\fT,v}(x) = x ^ n + a_{n - 1} x ^ {n - 1} + \dots + a_0$ e $\bB = \{ v, \fT(v), \dots, \fT ^ {n - 1}(v)\}$ uma base de $\eV$. A matriz $[\fT]_{\bB}$ é definida por:
+	\[
+		[\fT]_{\bB} = \left( 
+			\begin{array}{ccccc}
+				0      & 0      & 0      & \dots  &     -a_0 \\
+				1      & 0      & 0      & \dots  &     -a_1 \\
+				0      & 1      & 0      & \dots  &     -a_2 \\
+				0      & 0      & 1      & \dots  &     -a_3 \\
+				\vdots & \vdots & \vdots & \ddots &   \vdots \\
+				0      & 0      & 0      & \dots  & -a_{n-1}
+			\end{array}
+		\right)
+	\]
+	$[\fT]_{\bB}$ é chamada matriz companheira de $m_{\fT,v}(x)$.
+\end{definition}
+
+% A: 2016-07-18
+\begin{lemma}
+	Seja $\fT: \eV \rightarrow \eV$ um operador linear onde $\eV$ é um $\eK$-espaço vetorial de dimensão finita. Então existe um vetor $v \in \eV$ tal que $m_{\fT,v}(x) = m_{\fT}(x)$.
+\end{lemma}
+
+% A: 2016-07-18
+\begin{corollary}
+	Seja $\fT: \eV \rightarrow \eV$ um operador linear onde $\eV$ é um $\eK$-espaço vetorial de dimensão finita. Então existe um subespaço $\fT$-Cíclico de $\eV$ com dimensão igual ao grau do polinômio $m_{\fT}$.
+\end{corollary}
+
+% A: 2016-07-18
+\begin{theorem}
+	Seja $\fT: \eV \rightarrow \eV$ um operador linear onde $\eV$ é um $\eK$-espaço vetorial de dimensão finita. As seguintes afirmações são equivalentes:
+	\begin{enumerate}
+		\item $\eV$ é $\fT$-Cíclico 
+		\item o grau de $m_{\fT}$ é $n$.
+		\item $m_{\fT} = p_{\fT}$.
+	\end{enumerate}
+\end{theorem}
+
+
+
+
+%******************************************************************************
+% Operadores Nilpotentes
+%******************************************************************************
+% A: 2016-07-18
+\section{Operadores Nilpotentes}
+
+% A: 2016-07-18
+\begin{definition}
+	Um operador linear $\fT \in \fcL(\eV, \eV)$ é chamado de nilpotente se existir um $m > 0$ tal que $\fT ^ m = 0$. O índice de nilpotência de um tal operador será o menor índice com esta propriedade.
+\end{definition}
+
+% A: 2016-07-18
+\begin{lemma}
+	Um operador linear $\fT \in \fcL(\eV, \eV)$ é nilpotente e $\dim \eV \geq 1$, então $\Nuc \fT \neq \{ 0 \}$.
+\end{lemma}
+
+% A: 2016-07-18
+\begin{theorem}
+	Seja $\fT : \eV \rightarrow \eV $ um operador linear, onde $\eV$ é um $\eK$-espaço vetorial de dimensão finita. Então $\fT$ é a soma direta de um operador nilpotente e um operador invertível. Além disso, tal decomposição é única.
+\end{theorem}
+
+% A: 2016-07-18
+\begin{proposition}
+	Seja $\fT : \eV \rightarrow \eV $ um operador linear nilpotente de índice de nilpotência $m \geq 1$, onde $\eV$ é um $\eK$-espaço vetorial de dimensão finita. Se $v \in \eV$ é tal que $\fT ^ {m - 1}(v) \neq 0$, então:
+	\begin{enumerate}
+		\item O conjunto $\{ v, \fT(v), \dots, \fT ^ {m - 1}(v) \}$ é LI.
+		\item Existe um subespaço $\fT$-invariante $\eW$ de $\eV$ tal que $\eV = \eU \oplus \eW$, onde $\eU = [ v, \fT(v), \dots, \fT ^ {m - 1}(v) ]$.
+	\end{enumerate}
+\end{proposition}
+
+% A: 2016-07-18
+\begin{definition}[Bloco de Jordan]
+	Um bloco de bloco de Jordan $r \times r$ em $\lambda$ é uma matriz $J_r(\lambda)$ em $\fcM(\eK)$ que tem $\lambda$ na diagonal principal e $1$ na diagonal abaixo da principal, isto é,
+	\[
+		J_r(\lambda) = \left( 
+			\begin{array}{ccccc}
+				\lambda & 0       & 0       & \dots  &       0 \\
+				1       & \lambda & 0       & \dots  &       0 \\
+				0       & 1       & \lambda & \dots  &       0 \\
+				\vdots  & \vdots  & \vdots  & \ddots &  \vdots \\
+				0       & 0       & 0       & \dots  & \lambda
+			\end{array}
+		\right)
+	\]
+\end{definition}
+
+% A: 2016-07-18
+\begin{theorem}
+	Seja $\fT : \eV \rightarrow \eV$ um operador nilpotente com índice de nilpotência $m \geq 1$, onde $\eV$ é um $\eK$-espaço vetorial de dimensão finita. Então existem números positivos $t, m_1, \dots, m_t$ e vetores $v_1, \dots, v_t \in \eV$ tais que:
+	\begin{enumerate}
+		\item $m = m_1 \geq \dots \geq m_t$.
+		\item O conjunto $\bB = \{ v_1, \fT ^ 1(v_1), \dots, \fT ^ {m_1-1}(v_1), \, v_2, \fT ^ 1(v_2), \dots, \fT ^ {m_2-1}, \dots,\, v_t, \fT ^ 1(v_t), \dots, \fT ^ {m_2-1}(v_t) \}$ é uma base de $\eV$.
+		\item $\fT ^ {m_i}(v_i) = 0$, para cada $i = 1, \dots, t$.
+		\item Se $\eS$ for um operador linear em um $\eK$-espaço vetorial $\eW$ de dimensão finita, então os inteiros $t, m_1, \dots, m_t$ associados a $\eS$ e a $\fT$ são iguais se e somente se existir um isomorfismo $\Phi: \eV \rightarrow \eW$ com $\Phi\fT\Phi ^ {-1} = \eS$.
+	\end{enumerate}
+\end{theorem}
+
+
+
+%******************************************************************************
+% Formas de Jordan
+%******************************************************************************
+% A: 2016-07-18
+\section{Formas de Jordan}
+
+% A: 2016-07-18
+\begin{theorem}
+	Seja $\fT : \eV \rightarrow \eV$ um operador linear, onde $\eV$ é um $\eK$-espaço vetorial de dimensão finita tal que $p_{\fT}(x) = (x - \lambda_1) ^ {m_1} \dots (x - \lambda_r) ^ {m_r}, m_r \geq 1$ e $\lambda_i \neq \lambda_j$, se $i \neq j$. Então $\eV = \eU_1 \oplus \dots \oplus \eU_r$, onde, para $i = 1, \dots, r$, temos:
+	\begin{enumerate}
+		\item $\dim_{\eK} \eU_i = m_i$.
+		\item o subespaço $\eU_i$ é $\fT$-invariante.
+		\item a restrição do operador $\lambda_i \Id - \fT$ a $\eU_i$ é nilpotente.
+	\end{enumerate}
+\end{theorem}
+
+% A: 2016-07-18
+\begin{definition}[Forma de Jordan]
+	Seja $\fT : \eV \rightarrow \eV$ um operador linear, onde $\eV$ é um $\eK$-espaço vetorial de dimensão finita tal que $p_{\fT}(x) = (x - \lambda_1) ^ {m_1} \dots (x - \lambda_r) ^ {m_r}, m_r \geq 1$ e $\lambda_i \neq \lambda_j$, se $i \neq j$ e seja $\eV = \eU_1 \oplus \dots \oplus \eU_r$, onde, para $i = 1, \dots, r$, satisfazendo as propriedades do teorema anterior, sejam $\bB_i$ a base de $\eU_i$ e números $t_i, m_{i1}, \dots, m_{it}$, tais que
+	\[
+		[\fT_i]_{\bB_i} = \left( 
+			\begin{array}{ccccc}
+				J_{m1}(\lambda_i) & 0                 & 0                 & \dots  &       0 \\
+				0                 & J_{m2}(\lambda_i) & 0                 & \dots  &       0 \\
+				0                 & 0                 & J_{m3}(\lambda_i) & \dots  &       0 \\
+				\vdots            &            \vdots & \vdots            & \ddots &       \vdots      \\
+				0                 & 0                 & 0                 & \dots  & J_{m t_i}(\lambda_i)
+			\end{array}
+		\right)
+	\]
+	onde, para cada $i = 1, \dots, r$ e $j = 1, \dots, t_i$,
+	\[
+		J_{m_{ij}}(\lambda_i) = \left( 
+			\begin{array}{ccccc}
+				\lambda_i & 0         & 0         & \dots  &         0 \\
+				1         & \lambda_i & 0         & \dots  &         0 \\
+				0         & 1         & \lambda_i & \dots  &         0 \\
+				\vdots    & \vdots    & \vdots    & \ddots &    \vdots \\
+				0         & 0         & 0         & \dots  & \lambda_i
+			\end{array}
+		\right)
+		\in \fcM_{m_{ij}}(\eK)
+	\]
+	A matriz:
+	\[
+		[\fT]_{\bB} = \left( 
+			\begin{array}{ccccc}
+				[\fT_1]_{\bB_1} & 0               & 0               & \dots  &       0 \\
+				0               & [\fT_2]_{\bB_2} & 0               & \dots  &       0 \\
+				0               & 0               & [\fT_3]_{\bB_3} & \dots  &       0 \\
+				\vdots          &          \vdots & \vdots          & \ddots &       \vdots      \\
+				0               & 0               & 0               & \dots  & [\fT_r]_{\bB_r}
+			\end{array}
+		\right)
+	\]
+	é chamada de forma de Jordan associada a $\fT$.
+\end{definition}
+
+
+
+
+%&&&******************************************************************************
+%&&&******************************************************************************
+%&&& 6. Espaços com Produto Interno
+%&&&******************************************************************************
+%&&&******************************************************************************
+\chapter{Espaços com Produto Interno}
+
+%******************************************************************************
+% Produto Interno
+%******************************************************************************
+\section{Produto Interno}
+
+\begin{definition}[Produto Interno]
+	Seja $\eV$ um $\eK$-espaço vetorial, onde $K = \nR$ ou $K = \nC$. Um produto interno sobre $\eV$ é uma função $\langle, \rangle : \eV \times \eV \rightarrow \eK$ que satisfaz as seguintes quatro propriedades:
+	\begin{description}
+		\item [P1] $\langle u + v, w\rangle = \langle u, w\rangle + \langle v, w\rangle, \forall u, v, w \in \eV$ 
+		\item [P2] $\langle \lambda u, v\rangle = \lambda\langle u, v\rangle, \forall \lambda \in \eK,  \forall u, v \in \eV$ 
+		\item [P3] $\langle u, v\rangle = \overline{\langle v, u\rangle}, \forall u, v \eV$ 
+		\item [P4] $\langle u, u\rangle > 0, u \in \eV$ e $u \neq 0$ 
+	\end{description}
+\end{definition}
+
+
+\begin{lemma}
+	Outras propriedades:
+	\begin{description} 
+		\item [] $\langle 0, v\rangle = \langle v, 0\rangle = 0, \forall v \in \eV$ 
+		\item [] $\langle v, v\rangle = 0 \Leftrightarrow v = 0$ 
+		\item [P5] $\langle u, v + w\rangle = \langle u, v\rangle + \langle u, w\rangle, \forall u, v, w \in \eV$
+		\item [P6] $\langle u, \lambda v \rangle = \overline{\langle \lambda v, y\rangle} = \overline{\lambda} \overline{ \langle v, u\rangle} = \overline{\lambda} \langle u, v \rangle , \forall \lambda \in \eK,  \forall u, v \in \eV$ 
+	\end{description}
+\end{lemma}
+
+% A: 2016-07-18
+\begin{definition}
+	Seja $\eV$ e $\eW$ dois $\eK$-espaços vetorial e seja $\langle , \rangle$ um produto interno sobre $\eV$. Se $\fT : \eW \rightarrow \eV$ for uma transformação linear injetora. Então podemos definir um produto interno em $\eW$ como:
+	\[
+		\langle , \rangle_{\fT} := \langle \fT(u), \fT(v) \rangle, \, \forall u, v \in \eW
+	\]
+\end{definition}
+
+% A: 2016-07-18
+\begin{definition}[Norma]
+	Seja $\eV$ um $\eK$-espaço vetorial munido de produto interno $\langle , \rangle$. Para cada $v \in \eV$, chamamos de norma de $v$ ao número real dado por:
+	\[
+		\lVert v \rVert = \sqrt{\langle v, v \rangle}
+	\]
+\end{definition}
+
+\begin{lemma}
+	Seja $\eV$ e $\eW$ dois $\eK$-espaços vetorial e seja $\langle , \rangle$ um produto interno sobre $\eV$.
+	\begin{enumerate}
+		\item $\lVert u \rVert \geq 0, \, \forall u \in \eV$
+		\item $\lVert u \rVert = 0, \Leftrightarrow u = 0$
+		\item $\lVert \alpha u \rVert = \alpha \lVert u \rVert, \, \forall \alpha \in \eK \text{ e } \forall u \in \eV$
+	\end{enumerate}
+\end{lemma}
+
+\begin{proposition}[Identidade de Polarização]
+	Seja $\eV$ um $\eK$-espaço vetorial com produto interno $\langle, \rangle$ e sejam $u, v \in \eV$. \\
+	Para $\eK = \nR$:
+	\[
+		\langle u, v \rangle = \frac{1}{4} \lVert u + v \rVert ^ 2 - \frac{1}{4} \lVert u - v \rVert ^ 2
+	\] 
+	Para $\eK = \nC$:
+	\[
+		\langle u, v \rangle = \frac{1}{4} \lVert u + v \rVert ^ 2 - \frac{1}{4} \lVert u - v \rVert ^ 2 +
+		\frac{i}{4} \lVert u + iv \rVert ^ 2 - \frac{i}{4} \lVert u - iv \rVert ^ 2
+	\] 
+\end{proposition}
+
+\begin{theorem}[Desigualdade de Cauchy-Schwarz]
+	Seja $\eV$ um $\eK$-espaço vetorial com produto interno $\langle, \rangle$. Então
+	\[
+		|\langle u, v \rangle| \leq \lVert u \rVert \lVert v \rVert, \forall u, v\in \eV.
+	\]
+	A igualdade $|\langle u, v \rangle| = \lVert u \rVert \lVert v \rVert$ é válida se e somente se $\{u, v\}$ for linearmente dependente.
+\end{theorem}
+
+\begin{corollary}[Desigualdade de Triangular]
+	Seja $\eV$ um $\eK$-espaço vetorial com produto interno $\langle, \rangle$. Então
+\[
+	\lVert u +  v \rVert \leq \lVert u \rVert  + \lVert v \rVert, \forall u, v\in \eV.
+\]
+\end{corollary}
+
+
+
+
+%******************************************************************************
+% Ortogonalidade
+%******************************************************************************
+\section{Ortogonalidade}
+
+% A: 2016-07-18
+\begin{definition}[Ortogonalidade]
+	Seja $\eV$ um $\eK$-espaço vetorial munido de produto interno $\langle , \rangle$ e sejam $u, v \in \eV$. Dizemos que $u$ e $v$ são ortogonais, denotado por $u \perp v$, se $\langle u , v \rangle = 0$. Um subconjunto $\eA$ de $\eV$ é chamado de ortogonal se os seus elementos são ortogonais dois a dois e dizemos que $\eA$ é um conjunto ortonormal se for um conjunto ortogonal e se $\lVert u \rVert = 1, \, \forall u \in \eA$.
+\end{definition}
+
+\begin{lemma}
+	Seja $\eV$ um $\eK$-espaço vetorial munido de produto interno $\langle , \rangle$. O vetor nulo é ortogonal a todos os elementos de $\eV$, pois $\langle 0, u \rangle = 0, \, \forall u \in \eV$.
+\end{lemma}
+
+
+\begin{proposition}
+	Seja $\eV$ um $\eK$-espaço vetorial com produto interno $\langle, \rangle$ e seja $\eA$ um subconjunto ortogonal de $\eV$ formado por vetores não nulos.
+	\begin{enumerate}[label=(\alph*)]
+		\item Se $v \in [ v_1, \dots, v_n ]$, com $v_i \in \eA$, então:
+		\[
+			v = \sum_{i = 1}^{n} \frac{\langle v, v_i \rangle}{\lVert v_i \rVert ^ 2}v_i
+		\]
+		\item $\eA$ é linearmente independente.
+	\end{enumerate}
+\end{proposition}
+
+\begin{corollary}
+	Seja $\eV$ um $\eK$-espaço vetorial com produto interno $\langle, \rangle$ e seja $\{ v_1, \dots, v_n \}$ uma base ortonormal de $\eV$. Então para $v \in \eV$, temos
+	\[
+		v = \sum_{i = 1}^{n} \langle v, v_i \rangle v_i
+	\]
+\end{corollary}
+
+~\\
+%******************************************************************************
+% Processo de Gram-Schmidt
+%******************************************************************************
+\subsection{Processo de Ortogonalização Gram-Schmidt}
+\bref{[Anton,AlgLinApl-pt,2010]} Para converter uma base $\{ u_1, u_2, u_3, \dots, u_n \}$ numa base ortogonal $\{ v_1, v_2, v_3, \dots, v_n \}$, efetue as seguintes contas:
+\begin{flalign*}
+& v_1 = u_1 &&\\\
+& v_2 = u_2 - \frac{\langle u_2, v_1 \rangle}{\lVert v_1 \rVert ^ 2} v_1 &&\\
+& v_3 = u_3 - \frac{\langle u_3, v_1 \rangle}{\lVert v_1 \rVert ^ 2} v_1 - \frac{\langle u_3, v_2 \rangle}{\lVert v_2 \rVert ^ 2} v_2&&\\
+&\vdots&&\\
+& v_n = u_n - \frac{\langle u_n, v_1 \rangle}{\lVert v_1 \rVert ^ 2} v_1 - \frac{\langle u_n, v_2 \rangle}{\lVert v_2 \rVert ^ 2} v_2 - \frac{\langle u_n, v_3 \rangle}{\lVert v_3 \rVert ^ 2} v_3 + \dots - \frac{\langle u_n, v_n \rangle}{\lVert v_n \rVert ^ 2} v_n&&\\
+\end{flalign*}
+Para converter a base ortogonal numa base ortonormal $\{ q_1, q_2, q_3, \dots, q_n \}$ normalize os vetores da base ortonormal:
+\[
+	q_i = \frac{v_i}{\lVert v_i \rVert}, i = 1, 2, 3, \dots, n
+\]
+
+~\\
+%******************************************************************************
+% Decomposição QR 1
+%******************************************************************************
+\subsection{Decomposição QR - Gram-Schmidt}
+\bref{[Anton,AlgLinApl-pt,2010]}
+Seja $A$ uma matriz $m \times n$ tal que $A = [ u_1 \, u_2 \, u_3 \dots u_n ]$ e $u_1, u_2, u_3, \dots, u_n$ são vetores de dimensão $m$ linearmente independentes. Existe uma matriz $Q = [ q_1 \, q_2 \, q_3 \dots q_n ]$, através do processo de Gram-Schmidt, formado por uma base ortonormal projetados pelos vetores de $u_1, u_2, u_3, \dots, u_n$. Temos então:
+\begin{flalign*}
+	&\left\{\begin{array}{l}
+		u_1 = \langle u_1, q_1 \rangle q_1 + \langle u_1, q_2 \rangle q_2 + \langle u_1, q_3 \rangle q_3 + \dots \langle u_1, q_n \rangle q_n \\
+		u_2 = \langle u_2, q_1 \rangle q_1 + \langle u_2, q_2 \rangle q_2 + \langle u_2, q_3 \rangle q_3 + \dots \langle u_2, q_n \rangle q_n \\
+		u_3 = \langle u_3, q_1 \rangle q_1 + \langle u_3, q_2 \rangle q_2 + \langle u_3, q_3 \rangle q_3 + \dots \langle u_3, q_n \rangle q_n \\
+		\vdots\\
+		u_n = \langle u_n, q_1 \rangle q_1 + \langle u_n, q_2 \rangle q_2 + \langle u_n, q_3 \rangle q_3 + \dots \langle u_n, q_n \rangle q_n 
+	\end{array}\right.
+	\Leftrightarrow&&\\
+	&A = QR = [ q_1 \, q_2 \, q_3 \dots q_n ]
+	\left[\begin{array}{ccccc}
+		\langle u_1, q_1 \rangle & \langle u_1, q_2 \rangle & \langle u_1, q_3 \rangle & \dots  & \langle u_1, q_n \rangle \\
+		                       0 & \langle u_2, q_2 \rangle & \langle u_2, q_3 \rangle & \dots  & \langle u_2, q_n \rangle \\
+		                       0 &                        0 & \langle u_3, q_3 \rangle & \dots  & \langle u_3, q_n \rangle \\
+		                  \vdots &                   \vdots &                   \vdots & \ddots &             \vdots \\
+		                       0 &                        0 &                        0 & \dots & \langle u_n, q_n \rangle
+	\end{array}\right]&&
+\end{flalign*}
+
+\begin{theorem}
+	Todo espaço vetorial de dimensão finita $n \geq 1$ com produto interno possui uma base ortonormal.
+\end{theorem}
+
+\begin{corollary}
+	Seja $\eV$ um $\eK$-espaço vetorial munido de produto interno. Sejam $\bB = \{ u_1,\dots, u_n \}$ e $\bB' = \{ v_1,\dots, v_n \}$ duas bases ortonormais de $\eV$. Se $M$ é a matriz de mudança de base $\bB$ para $\bB'$. então $M \overline{M ^ T} = \overline{M ^ T} M = \Id_n$.
+\end{corollary}
+
+
+
+
+%******************************************************************************
+% Subespaço Ortogonal
+%******************************************************************************
+\section{Subespaço Ortogonal}
+
+\begin{definition}
+	Seja $\textsf{V}$ um espaço vetorial com produto interno, e seja $\eS \subseteq \eV$ um subconjunto $\eV$. Chamamos de ortogonal de $\eS$ ao subconjunto $\eS ^ \perp = \{ v \in \eV : \langle v, u \rangle = 0, \forall u \in \eS \}$.
+\end{definition}
+
+\begin{lemma}
+	Seja $\eS$ um subconjunto de um espaço vetorial $\eV$ com produto interno. O conjunto $\eS ^ \perp$ é um subespaço de $\eV$.
+\end{lemma}
+
+\begin{lemma}
+	Seja $\eS$ um subconjunto de um espaço vetorial $\eV$ com produto interno. Se $\eS = \{ 0 \}$ Então $\eS ^ \perp = \eV$.
+\end{lemma}
+
+\begin{lemma}
+	Seja $\eS$ um subconjunto de um espaço vetorial $\eV$ com produto interno. Se $\eS$ coniver uma base de $\eV$ então $\eS ^ \perp = \{ 0 \}$.
+\end{lemma}
+
+\begin{lemma}
+	Seja $\eS$ um subconjunto de um espaço vetorial $\eV$ com produto interno. $\eS ^ \perp = \{ v \in \eV : \langle u, v \rangle = 0, \forall u \in \eS \}$.
+\end{lemma}
+
+\begin{proposition}
+	Seja $\eV$ um $\eK$-espaço vetorial munido de produto interno. Sejam $\eW \subseteq \eV$ um subespaço e $\bB = \{ w_1,\dots, w_k \}$ um gerador para $\eW$. Então $v \in \eW ^ \perp$ se e somente se $\langle v, w_i \rangle$, para cada $i = 1, \dots, k$.
+\end{proposition}
+
+\begin{proposition}
+	Seja $\eV$ um $\eK$-espaço vetorial de dimensão $n \geq 1$ e com produto interno e seja $\eW \subsetneq \eV$ um subespaço próprio de $\eV$. Então $\eV = \eW \oplus \eW ^ \perp$.
+\end{proposition}
+
+\begin{corollary}
+	Seja $\eV$ um $\eK$-espaço vetorial de dimensão finita com produto interno e seja $\eW \subsetneq \eV$ um subespaço de $\eV$. Então 
+	\[
+		dim_K \eV = dim_K \eW + dim_K \eW ^ \perp
+	\]
+\end{corollary}
+
+
+
+
+%******************************************************************************
+% A Melhor Aproximação
+%******************************************************************************
+\section{A Melhor Aproximação}
+
+% A: 2016-07-18
+\begin{proposition}
+	Sejam $\eV$ um $\eK$-espaço vetorial munido de produto interno e $\eW \subseteq \eV$ um subespaço de $\eV$ com dimensão finita. Então, dado $v \in \eV$, existe um único $w \in \eW$ tal que $v - w \in \eW ^ \perp$.
+\end{proposition}
+
+% A: 2016-07-18
+\begin{definition}
+	Sejam $\eV$ um $\eK$-espaço vetorial munido de produto interno e $\eW \subseteq \eV$ um subespaço de $\eV$. Se dado $v \in \eV$, existir $w \in \eW$ tal que $v - w \in \eW ^ \perp$, chamamos o vetor $w$ de projeção ortogonal de $v$ sobre $\eW$ e denotado por $w = proj_W v$.
+\end{definition}
+
+% A: 2016-07-18
+\begin{proposition}[Melhor Aproximação]
+	Sejam $\eV$ um $\eK$-espaço vetorial munido de produto interno e $\eW$ um subespaço de $\eV$. As seguintes afirmações são equivalentes para um vetor $w_0 \in \eW$:
+	\begin{enumerate}
+		\item $v - w_0 \in \eW ^ \perp$.
+		\item $\lVert v - w_0 \rVert < \lVert v - w_0 \rVert, \, \forall w \in \eW \text{ e } w \neq w_0$.
+	\end{enumerate}
+\end{proposition}
+
+
+
+
+%******************************************************************************
+% Transformações que Preservam o Produto Interno
+%******************************************************************************
+\section{Transformações que Preservam o Produto Interno}
+
+% A: 2016-07-18
+\begin{definition}
+	Sejam $\eV$ e $\eW$ dois $\eK$-espaços vetoriais munido de produto interno. Dizemos que uma transformação $\fT \in \fcL(\eV, \eW)$ é uma transformação que preserva o produto interno se $\langle \fT(u), \fT(v) \rangle = \langle u, v \rangle$, para todo $u, v \in \eV$. Um isomorfismo entre espaços com produto interno é um isomorfismo que preserva o produto interno.
+\end{definition}
+
+% A: 2016-07-18
+\begin{remark}
+	Uma transformação linear que preserva o produto interno é necessariamente injetora.
+\end{remark}
+
+% A: 2016-07-18
+\begin{theorem}
+	Sejam $\eV$ e $\eW$ dois $\eK$-espaços vetoriais de dimensão finita com produto interno, tal que $\dim_{\eK} \eV = \dim_{\eK} \eW$ e seja $\fT \in \fcL(\eV, \eW)$. As seguintes afirmações são equivalentes:
+	\begin{enumerate}
+		\item $\fT$ preserva o produto interno.
+		\item $\fT$ é um isomorfismo de espaços com produto interno.
+		\item $\fT$ leva toda base ortonormal de $\eV$ em base ortonormal de $\eW$.
+		\item $\fT$ leva alguma base ortonormal de $\eV$ em uma base ortonormal de $\eW$.
+	\end{enumerate}
+\end{theorem}
+
+% A: 2016-07-18
+\begin{theorem}
+	Sejam $\eV$ e $\eW$ dois $\eK$-espaços vetoriais munido de produto interno. e $\fT \in \fcL(\eV, \eW)$. Então $\fT$ preserva o produto interno se e somente se $\lVert \fT(v) \rVert = \lVert v \rVert, \, \forall v \in \eV$ 
+\end{theorem}
+
+
+
+
+%&&&******************************************************************************
+%&&&******************************************************************************
+%&&& 7. Adjuntos
+%&&&******************************************************************************
+%&&&******************************************************************************
+\chapter{Adjuntos}
+
+
+
+
+%******************************************************************************
+% Funcionais Lineares e Adjuntos
+%******************************************************************************
+\section{Funcionais Lineares e Adjuntos}
+
+% A: 2016-07-18
+\begin{proposition}
+	Seja $\eV$ um $\eK$-espaço vetorial de dimensão finita com produto interno. Se $\ff \in \eV ^ *$, então existe um único $w \in \eV$ tal que $\ff(u) = \langle u, w \rangle$ para todo $u \in \eV$.
+\end{proposition}
+
+% A: 2016-07-19
+\begin{theorem}
+	Seja $\eV$ um $\eK$-espaço vetorial de dimensão finita com produto interno. Se $\fT \in \fcL(\eV, \eV)$, então existe um único operador $\fTa \in \eV$ tal que $\langle \fT(u), v \rangle = \langle u, \fTa(v) \rangle$ para todo $u, v \in \eV$.
+\end{theorem}
+
+% A: 2016-07-19
+\begin{definition}
+	Seja $\fT \in \fcL(\eV, \eV)$, onde $\eV$ é um $\eK$-espaço vetorial de dimensão finita com produto interno. Dizemos que $\fT$ possui um adjunto se existir um operador $\fTa \in \fcL(\eV, \eV)$ tal que $\langle \fT(u), v \rangle = \langle u, \fTa(v) \rangle$ para todo $u, v \in \eV$. Diremos, neste caso, que $\fTa$ é adjunto de $\fT$.
+\end{definition}
+
+% A: 2016-07-19
+\begin{proposition}
+	Seja $\eV$ um $\eK$-espaço vetorial com produto interno. Sejam $\fT, \fS \in \fcL(\eV, \eV)$ operadores lineares que admitem adjuntos $\fTa$ e $\fSa$, respectivamente e $\lambda \in \eK$. Então:
+	\begin{enumerate}
+		\item $\fT + \fS$ admite adjunto e $(\fT + \fS) ^ * = \fTa + \fSa$
+		\item $\lambda \fT$ admite adjunto e $(\lambda \fT) ^ * = \overline{\lambda} \fTa$
+		\item $\fT \circ \fS$ admite adjunto e $(\fT \circ \fS) ^ * = \fSa \circ \fTa$
+		\item $\fTa$ admite adjunto e $(\fTa) ^ * = \fT$
+	\end{enumerate}
+\end{proposition}
+
+% A: 2016-07-19
+\begin{proposition}
+	Seja $\eV$ um $\eK$-espaço vetorial com produto interno e de dimensão finita. Seja $\bB = \{ v_1, \dots, v_n \}$ uma base ortonormal de $\eV$ e $\fT \in \fcL(\eV, \eV)$. Se $[\fT]_{\bB} = (a_{ij})_{i, j}$ então $a_{ij} = \langle \fT(v_j), v_i \rangle, \, \forall i,j = 1, \dots, n$.
+\end{proposition}
+
+% A: 2016-07-19
+\begin{theorem}
+	Seja $\eV$ um $\eK$-espaço vetorial com produto interno e de dimensão finita, e seja $\fT \in \fcL(\eV, \eV)$. Em relação a qualquer base ortonormal de $\eV$ a matriz $\fTa$ é igual à transposta conjugada da matriz $\fT$.
+\end{theorem}
+
+
+
+
+%******************************************************************************
+% Autoadjuntos
+%******************************************************************************
+\section{Autoadjuntos}
+
+% A: 2016-07-19
+\begin{definition}
+	Seja $\fT \in \fcL(\eV, \eV)$, onde $\eV$ é um $\eK$-espaço vetorial de dimensão finita com produto interno. Dizemos que $\fT$ possui um autoadjunto se $\fT$ admite um adjunto $\fTa$ e $\fTa = \fT$. No caso em que $\eK = \nC$, usamos também o termo hermitiano e no caso em que $\eK = \nR$, usamos também o termo simétrico.
+\end{definition}
+
+% A: 2016-07-19
+\begin{theorem}
+	Seja $\eV$ um $\eK$-espaço vetorial com produto interno e de dimensão finita, e $\fT \in \fcL(\eV, \eV)$. As seguintes afirmações são equivalentes:
+	\begin{enumerate}
+		\item $\fT$ é autoadjunto.
+		\item $\overline{[\fT]}_{\bB}^t = [\fT]_{\bB}$ para toda base ortonormal de $\bB$ de $\eV$.
+		\item Existe uma base ortonormal de $\bB$ de $\eV$ tal que $\overline{[\fT]}_{\bB}^t = [\fT]_{\bB}$.
+	\end{enumerate}
+\end{theorem}
+
+% A: 2016-07-19
+\begin{lemma}
+	Seja $\eV$ um $\nC$-espaço vetorial com produto interno e de dimensão finita, e $\fT \in \fcL(\eV, \eV)$. As seguintes afirmações são equivalentes:
+	\begin{enumerate}
+		\item $\fT = 0$.
+		\item $\langle \fT(u), u \rangle = 0, \, \forall u \in \eV$ $\eV$.
+		\item $\langle \fT(u), v \rangle = 0, \, \forall u, v \in \eV$ $\eV$.
+	\end{enumerate}
+\end{lemma}
+
+% A: 2016-07-19
+\begin{proposition}
+	Seja $\eV$ um $\nC$-espaço vetorial com produto interno, e $\fT \in \fcL(\eV, \eV)$. Então $\fT$ é um operador hermitiano se e somente se $\langle \fT(v), v \rangle \in \nR$.
+\end{proposition}
+
+% A: 2016-07-19
+\begin{remark}
+	A proposição acima não vale se $\eK = \nR$.
+\end{remark}
+
+
+
+%******************************************************************************
+% Operadores Unitários
+%******************************************************************************
+\section{Operadores Unitários}
+
+% A: 2016-07-19
+\begin{definition}[Operador Unitário]
+	Seja $\fT \in \fcL(\eV, \eV)$, onde $\eV$ é um $\eK$-espaço vetorial com produto interno. Dizemos que $\fT$ é unitário se for um isomorfismo de espaços com produto interno.
+\end{definition}
+
+% A: 2016-07-19
+\begin{lemma}
+	Seja $\fT_1, \fT_2 \in \fcL(\eV, \eV)$, onde $\eV$ é um $\eK$-espaço vetorial com produto interno.
+	\begin{enumerate}
+		\item Se $\fT_1, \fT_2$ são unitários então $\fT_1 \circ \fT_2$ é unitário.
+		\item Se $\fT_1$ é unitário então $\fT_1^{-1}$ é unitário.
+	\end{enumerate}
+\end{lemma}
+
+% A: 2016-07-19
+\begin{proposition}
+	Seja $\fT \in \fcL(\eV, \eV)$, onde $\eV$ é um $\eK$-espaço vetorial com produto interno. Então $\fT$ é unitário se e somente se o adjunto $\fTa$ existir e $\fT \circ \fTa = \fTa \circ \fT = \Id$.
+\end{proposition}
+
+
+
+%******************************************************************************
+% Operadores Normais
+%******************************************************************************
+\section{Operadores Normais}
+
+% A: 2016-07-19
+\begin{definition}[Operador Normal]
+	Seja $\eV$ um espaço vetorial com produto interno, e $\fT \in \fcL(\eV, \eV)$. Dizemos que $\fT$ é normal se existir $\fTa$ e $\fT \circ \fTa = \fTa \circ \fT$.
+\end{definition}
+
+% A: 2016-07-19
+\begin{lemma}
+	Todo operador autoadjunto é normal.
+\end{lemma}
+
+% A: 2016-07-19
+\begin{lemma}
+	Todo múltiplo escalar de um operador normal é normal.
+\end{lemma}
+
+% A: 2016-07-19
+\begin{remark}
+	A soma de operadores normais não é necessariamente normal.
+\end{remark}
+
+% A: 2016-07-19
+\begin{proposition}
+	Seja $\eV$ um espaço vetorial com produto interno e $\fT \in \fcL(\eV, \eV)$. Então:
+	\begin{enumerate}
+		\item $\lVert \fT(v) \rVert = \lVert \fTa(v) \rVert, \, \forall v \in \eV$
+		\item Se $\fT(v) = \alpha v$, para $\alpha \in \eK$, então $\fTa(v) = \overline{\alpha}v$
+		\item Se $\fT_1(v_1) = \alpha_1 \fT(v_1)$ e $\fT_2(v_2) = \alpha_2 \fT(v_2)$, para $v_1, v_2 \in \eV$ e $\alpha_1, \alpha_2 \in \eK$, com $\alpha_1 \neq \alpha_2$ então $\langle v_1, v_2 \rangle = 0$
+	\end{enumerate}
+\end{proposition}
+
+% A: 2016-07-19
+\begin{theorem}
+	Seja $\eV$ um espaço vetorial com produto interno. Se $\fT \in \fcL(\eV, \eV)$ é autoadjunto, então $\fT$ possui um autovetor.
+\end{theorem}
+
+% A: 2016-07-19
+\begin{lemma}
+	Seja $\eV$ um espaço vetorial com produto interno e de dimensão finita e $\fT \in \fcL(\eV, \eV)$. Se $\eW$ é um subespaço de $\fT$-invariante de $\eV$, então $\eWp$ é  $\fTa$-invariante.
+\end{lemma}
+
+% A: 2016-07-19
+\begin{proposition}
+	Seja $\eV$ um espaço vetorial com produto interno e de dimensão finita. Se $\fT \in \fcL(\eV, \eV)$ é autoadjunto, então existe uma base ortonormal de $\eV$ cujos vetores são autovetores de $\fT$.
+\end{proposition}
+
+% A: 2016-07-19
+\begin{corollary}
+	Seja $A \in \fcM_n(\nR)$ uma matriz de simétrica. Então existem uma matriz invertível $M \in \fcM_n(\nR)$ tal que $M^tA M$ é diagonal.
+\end{corollary}
+
+% A: 2016-07-19
+\begin{theorem}
+	Seja $\eV$ um $\nC$-espaço vetorial com produto interno e de dimensão finita e $\fT \in \fcL(\eV, \eV)$. Então $\fT$ é um operador normal se e somente se existir uma base ortonormal de $\eV$ cujos vetores sejam autovetores de $\fT$.
+\end{theorem}
+
+
+
+
+%&&&******************************************************************************
+%&&&******************************************************************************
+%&&& 8. Formas Bilineares
+%&&&******************************************************************************
+%&&&******************************************************************************
+\chapter{Formas Bilineares}
+
+\end{document}

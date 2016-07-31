@@ -404,18 +404,108 @@ Considerando a transformação linear $A: \textsf{E} \rightarrow \textsf{F}$ sen
 		\item [Positividade]
 				\tabto{2cm} $\langle u, u\rangle > 0, u \neq 0$ 
 	\end{description}
+	~\\
+	\bref{[Coelho,AlgLin,2013]} Seja $\mathsf{V}$ um $\mathsf{K}$-espaço vetorial, onde $K = \mathbb{R}$ ou $K = \mathbb{C}$. Um produto interno sobre $\mathsf{V}$ é uma função $\langle, \rangle : \mathsf{V} \times \mathsf{V} \rightarrow \mathsf{K}$ que satisfaz as seguintes quatro propriedades:
+	\begin{description}
+		\item [P1] $\langle u + v, w\rangle = \langle u, w\rangle + \langle v, w\rangle, \forall u, v, w \in \mathsf{V}$ 
+		\item [P2] $\langle \lambda u, v\rangle = \lambda\langle u, v\rangle, \forall \lambda \in \mathsf{K},  \forall u, v \in \mathsf{V}$ 
+		\item [P3] $\langle u, v\rangle = \overline{\langle v, u\rangle}, \forall u, v \mathsf{V}$ 
+		\item [P4] $\langle u, u\rangle > 0, u \in \mathsf{V}$ e $u \neq 0$ 
+	\end{description}
+\end{definition}
+\bref{[Coelho,AlgLin,2013]} É possível deduzir:
+	\begin{description}
+		\item [] $\langle 0, v\rangle = \langle v, 0\rangle = 0, \forall v \in \mathsf{V}$ 
+		\item [] $\langle v, v\rangle = 0 \Leftrightarrow v = 0$ 
+		\item [P5] $\langle u, v + w\rangle = \langle u, v\rangle + \langle u, w\rangle, \forall u, v, w \in \mathsf{V}$
+		\item [P6] $\langle u, \lambda v \rangle = \overline{\langle \lambda v, y\rangle} = \overline{\lambda} \overline{ \langle v, u\rangle} = \overline{\lambda} \langle u, v \rangle , \forall \lambda \in \mathsf{K},  \forall u, v \in \mathsf{V}$ 
+	\end{description}
+	
+\begin{proposition}[Identidade de Polarização]\bref{[Coelho,AlgLin,2013]} 
+	Seja $\mathsf{V}$ um $\mathsf{K}$-espaço vetorial com produto interno $\langle, \rangle$ e sejam $u, v \in \mathsf{V}$. \\
+	Para $\mathsf{K} = \mathbb{R}$:
+	\[
+		\langle u, v \rangle = \frac{1}{4} \lVert u + v \rVert ^ 2 - \frac{1}{4} \lVert u - v \rVert ^ 2
+	\] 
+	Para $\mathsf{K} = \mathbb{C}$:
+	\[
+		\langle u, v \rangle = \frac{1}{4} \lVert u + v \rVert ^ 2 - \frac{1}{4} \lVert u - v \rVert ^ 2 +
+		\frac{i}{4} \lVert u + iv \rVert ^ 2 - \frac{i}{4} \lVert u - iv \rVert ^ 2
+	\] 
+\end{proposition}
+
+\begin{theorem}[Desigualdade de Cauchy-Schwarz]\bref{[Coelho,AlgLin,2013]} 
+	Seja $\mathsf{V}$ um $\mathsf{K}$-espaço vetorial com produto interno $\langle, \rangle$. Então
+\[
+	|\langle u, v \rangle| \leq \lVert u \rVert \lVert v \rVert, \forall u, v\in \mathsf{V}.
+\]
+A igualdade $|\langle u, v \rangle| = \lVert u \rVert \lVert v \rVert$ é válida se e somente se $\{u, v\}$ for linearmente dependente.
+\end{theorem}
+
+\begin{corollary}[Desigualdade de Triangular]\bref{[Coelho,AlgLin,2013]} 
+	Seja $\mathsf{V}$ um $\mathsf{K}$-espaço vetorial com produto interno $\langle, \rangle$. Então
+\[
+	\lVert u +  v \rVert \leq \lVert u \rVert  + \lVert v \rVert, \forall u, v\in \mathsf{V}.
+\]
+\end{corollary}
+
+\begin{definition}\bref{[Lima,AlgLin,2014]}
+	Seja $\textsf{E}$ um espaço vetorial com produto interno, $u, v \in \textsf{E}$. $u$ e $v$ são ortogonais $\Leftrightarrow$ $\langle u, v \rangle = 0$. Denotado como $u \perp v$.\\
+	
+	\bref{[Coelho,AlgLin,2013]} Seja $\mathsf{V}$ um $\mathsf{K}$-espaço vetorial com produto interno $\langle, \rangle$ e sejam $u, v \in \mathsf{V}$. Dizemos que $u$ e $v$ são ortogonais se $\langle u, v \rangle = 0$. Um subconjunto $\mathsf{A}$ de $\mathsf{V}$ é chamado de ortogonal se os seus elementos são ortogonais dois a dois e dizemos que $\mathsf{A}$ é um conjunto ortonormal se for um ortogonal e se $\lVert u \rVert = 1, \forall u \in \mathsf{A}$.
 \end{definition}
 
 \begin{definition}\bref{[Lima,AlgLin,2014]}
-	Seja $\textsf{E}$ um espaço vetorial com produto interno, $u, v \in \textsf{E}$. $u$ e $v$ são ortogonais $\Leftrightarrow$ $\langle u, v \rangle = 0$. Denotado como $u \perp v$.
-\end{definition}
-
-\begin{definition}\bref{[Lima,AlgLin,2014]}
-	Seja $\textsf{E}$ um espaço vetorial com produto interno, Um conjunto $X \subset \textsf{E}$. $\forall u, v \in X$ tal que $u \neq v \land u \perp v $ diz que $X$ é ortogonal. Se todos os vetores em $X$ são unitários $X$ é um conjunto ortonormal.
+	Seja $\textsf{E}$ um espaço vetorial com produto interno. Um conjunto $X \subset \textsf{E}$. $\forall u, v \in X$ tal que $u \neq v \land u \perp v $ diz que $X$ é ortogonal. Se todos os vetores em $X$ são unitários $X$ é um conjunto ortonormal.
 \end{definition}
 
 \begin{theorem}\bref{[Lima,AlgLin,2014]}
 	Num espaço vetorial $\textsf{E}$ com produto interno, todo conjunto ortogonal $X$ de vetores não nulos é LI.
 \end{theorem}
+
+\begin{proposition}\bref{[Coelho,AlgLin,2013]} 
+	Seja $\mathsf{V}$ um $\mathsf{K}$-espaço vetorial com produto interno $\langle, \rangle$ e seja $\mathsf{A}$ um subconjunto ortogonal de $\mathsf{V}$ formado por vetores não nulos.
+	\begin{enumerate}[label=(\alph*)]
+		\item Se $v \in [ v_1, \dots, v_n ]$, com $v_i \in \mathsf{A}$, então:
+		\[
+			v = \sum_{i = 1}^{n} \frac{\langle v, v_i \rangle}{\lVert v_i \rVert ^ 2}v_i
+		\]
+		\item $\mathsf{A}$ é linearmente independente.
+	\end{enumerate}
+\end{proposition}
+
+\begin{corollary}\bref{[Coelho,AlgLin,2013]} 
+	Seja $\mathsf{V}$ um $\mathsf{K}$-espaço vetorial com produto interno $\langle, \rangle$ e seja $\{ v_1, \dots, v_n \}$ uma base ortonormal de $\mathsf{V}$. Então para $v \in \mathsf{V}$, temos
+	\[
+		v = \sum_{i = 1}^{n} \langle v, v_i \rangle v_i
+	\]
+\end{corollary}
+
+\begin{theorem}\bref{[Coelho,AlgLin,2013]} 
+	Todo espaço vetorial de dimensão finita $n \geq 1$ com produto interno possui uma base ortonormal.
+\end{theorem}
+
+\begin{corollary}\bref{[Coelho,AlgLin,2013]} 
+	Seja $\mathsf{V}$ um $\mathsf{K}$-espaço vetorial munido de produto interno. Sejam $\mathsf{B} = \{ u_1,\dots, u_n \}$ e $\mathsf{B'} = \{ v_1,\dots, v_n \}$ duas bases ortonormais de $\mathsf{V}$. Se $M$ é a matriz de mudança de base $\mathsf{B}$ para $\mathsf{B'}$. então $M \overline{M ^ T} = \overline{M ^ T} M = Id_n$.
+\end{corollary}
+
+\begin{definition}\bref{[Coelho,AlgLin,2013]} 
+	Seja $\textsf{V}$ um espaço vetorial com produto interno, e seja $\mathsf{S} \subseteq \mathsf{V}$ um subconjunto $\mathsf{V}$. Chamamos de ortogonal de $\mathsf{S}$ ao subconjunto $\mathsf{S} ^ \perp = \{ v \in \mathsf{V} | \langle v, u \rangle = 0, \forall u \in \mathsf{S} \}$.
+\end{definition}
+
+\begin{proposition}\bref{[Coelho,AlgLin,2013]} 
+	Seja $\mathsf{V}$ um $\mathsf{K}$-espaço vetorial munido de produto interno. Sejam $\mathsf{W} \subseteq \mathsf{V}$ um subespaço e $\mathsf{B} = \{ w_1,\dots, w_k \}$ um gerador para $\mathsf{W}$. Então $v \in \mathsf{W} ^ \perp$ se e somente se $\langle v, w_i \rangle$, para cada $i = 1, \dots, k$.
+\end{proposition}
+
+\begin{proposition}\bref{[Coelho,AlgLin,2013]} 
+	Seja $\mathsf{V}$ um $\mathsf{K}$-espaço vetorial de dimensão $n \geq 1$ e com produto interno e seja $\mathsf{W} \subsetneq \mathsf{V}$ um subespaço próprio de $\mathsf{V}$. Então $\mathsf{V} = \mathsf{W} \oplus \mathsf{W} ^ \perp$.
+\end{proposition}
+
+\begin{corollary}\bref{[Coelho,AlgLin,2013]} 
+	Seja $\mathsf{V}$ um $\mathsf{K}$-espaço vetorial de dimensão finita com produto interno e seja $\mathsf{W} \subsetneq \mathsf{V}$ um subespaço de $\mathsf{V}$. Então 
+	\[
+		dim_K \mathsf{V} = dim_K \mathsf{W} + dim_K \mathsf{W} ^ \perp
+	\]
+\end{corollary}
 
 \end{document}
